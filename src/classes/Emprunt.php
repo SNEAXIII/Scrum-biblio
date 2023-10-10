@@ -6,6 +6,7 @@ use DateTime;
 
 class Emprunt
 {
+    private int $id;
     private DateTime $dateEmprunt;
     private DateTime $dateRetourEstime;
     private ?DateTime $dateRetourEffectif;
