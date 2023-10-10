@@ -12,5 +12,8 @@
             "email": "misterbalise2@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "symfony/var-dumper": "^6.3",
+        "phpunit/phpunit": "^10.4"
+    }
 }
