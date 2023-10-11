@@ -9,15 +9,19 @@
   "autoload-dev": {
     "psr-4": {
       "App\\Tests\\": "tests/"
-    },
-    "authors": [
-      {
-        "name": "Alexis Bassignot",
-        "email": "misterbalise2@gmail.com"
-      }
-    ],
-    "require-dev": {
-      "symfony/var-dumper": "^6.3",
-      "phpunit/phpunit": "^10.4"
     }
+  },
+  "authors": [
+    {
+      "name": "Alexis Bassignot",
+      "email": "misterbalise2@gmail.com"
+    }
+  ],
+  "require": {
+    "doctrine/orm": "^2.16"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^6.3",
+    "phpunit/phpunit": "^10.4"
   }
+}
