@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\unitaire;
+namespace App\Tests\Unit;
 
-use App\classes\Emprunt;
+use App\Entity\Emprunt;
 use PHPUnit\Framework\TestCase;
 use DateTime;
 

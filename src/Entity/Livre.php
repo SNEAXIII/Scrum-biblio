@@ -1,6 +1,6 @@
 <?php
 
-namespace App\classes;
+namespace App\Entity;
 
 class Livre extends Media
 {
