@@ -17,4 +17,14 @@ class Emprunt
     {
     }
 
+    public function isEnCours(): bool
+    {
+        return isset($this->dateRetourEffectif);
+    }
+
+    public function isEnRetard(): bool
+    {
+        $isDepasse = $this->dateRetourEstime < new DateTime();
+        return ($this->isEnCours() && $isDepasse);
+    }
 }
