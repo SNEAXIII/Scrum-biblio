@@ -27,5 +27,8 @@
   "require-dev": {
     "symfony/var-dumper": "^6.3",
     "phpunit/phpunit": "^10.4"
+  },
+  "scripts": {
+    "spy": "java -jar ./src/SchemaSpy/schemaspy.jar -t mariadb -dp ./src/SchemaSpy/mariadb.jar -db db_bibliotheque -host localhost -port 3306 -o ./documentation/schemaspy -u root -s db_bibliotheque"
   }
 }

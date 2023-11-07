@@ -19,10 +19,10 @@ class CrudAdherant
     public function addOne(string $numeroAdherent, string $email, string $nom, string $prenom)
     {
         $adherant = new Adherent();
-        $adherant -> setNumeroAdherent("AD-999999");
-        $adherant -> setEmail("Sacripant@carabistouille.vroom");
-        $adherant -> setNom("Sauvage");
-        $adherant -> setPrenom("Sacripant");
+        $adherant -> setNumeroAdherent($numeroAdherent);
+        $adherant -> setEmail($email);
+        $adherant -> setNom($nom);
+        $adherant -> setPrenom($prenom);
         $adherant -> setDateAdhesion(new DateTime());
         $this -> entityManager -> persist($adherant);
         $this -> entityManager -> flush();
@@ -45,18 +45,20 @@ class CrudAdherant
     {
         return $this -> entityManager -> getRepository(Adherent::class) -> findAll();
     }
+    public function getOne($id)
+    {
+        return $this -> entityManager -> getRepository(Adherent::class) ->findOneBy(["id"=>$id ]);
+    }
 
 }
 
 $crudAdherant = new CrudAdherant($entityManager);
 
-//$crudAdherant->addOne(
-//    "AD-999999",
-//    "Sacripant@carabistouille.vroom",
-//    "Sauvage",
-//    "Sacripant"
-//);
+$crudAdherant->addOne(
+    "AD-999999",
+    "Sacripant@carabistouille.vroom",
+    "Sauvage",
+    "Sacripant"
+);
 
-//$crudAdherant->delOne(8);
-
-dump($crudAdherant->getAll());
+dump($crudAdherant->getOne(9));
