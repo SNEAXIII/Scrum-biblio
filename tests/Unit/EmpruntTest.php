@@ -20,7 +20,7 @@ class EmpruntTest extends TestCase
     /**
      * @test
      */
-    public function IsEnCours_isEnCours_True()
+    public function IsEnCours_DateRetourNonRenseignee_True()
     {
         $empruntFictif = new Emprunt();
         $empruntFictif->setDateRetourEstime(newDate(15));

@@ -7,9 +7,9 @@ require "vendor\autoload.php";
 
 $adherant = new Adherent();
 $adherant->setNumeroAdherent("AD-999999");
-$adherant->setEmail("Sacripant@gmail.com");
+$adherant->setEmail("Sauvage@gmail.com");
 $adherant->setNom("Sauvage");
-$adherant->setPrenom("Sacripant");
+$adherant->setPrenom("Celine");
 $adherant->setDateAdhesion(new DateTime());
 
 $entityManager->persist($adherant);
