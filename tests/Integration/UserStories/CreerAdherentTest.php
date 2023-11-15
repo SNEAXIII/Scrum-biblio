@@ -42,7 +42,7 @@ class CreerAdherentTest extends TestCase
     }
 
     #[test]
-    public function creerAdherent_EmailMalSaisi_exception()
+    public function creerAdherent_EmailMalSaisi_Exception()
     {
         // Arrange
         $requete = new CreerAdherentRequete(
