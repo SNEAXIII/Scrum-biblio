@@ -3,7 +3,6 @@
 namespace App\Services;
 class GeneratorNumeroAdherent
 {
-//    todo tester ca dans un unit test
         public function execute(): string
     {
         // On génère un numéro aléatoire
