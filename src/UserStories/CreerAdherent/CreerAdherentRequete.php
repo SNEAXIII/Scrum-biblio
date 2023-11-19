@@ -4,12 +4,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreerAdherentRequete
 {
-    #[Assert\NotBlank(message : "le prenom doit être saisi")]
+    #[Assert\NotBlank(message : "Le prenom doit être saisi !")]
     private string $prenom;
-    #[Assert\NotBlank(message : "le nom doit être saisi")]
+    #[Assert\NotBlank(message : "Le nom doit être saisi !")]
     private string $nom;
-    #[Assert\NotBlank(message : "L'email doit etre saisi")]
-    #[Assert\Email(message:  "L'email n'est pas valide")]
+    #[Assert\NotBlank(message : "L'email doit etre saisi !")]
+    #[Assert\Email(message:  "L'email n'est pas valide !")]
     private string $email;
 
     public function getPrenom(): string
