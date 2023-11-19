@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,6 @@ require_once "./bootstrap.php";
 use App\Services\GeneratorNumeroAdherent;
 use App\UserStories\CreerAdherent\CreerAdherent;
 use App\UserStories\CreerAdherent\CreerAdherentRequete;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 $afficheFormulaire = true;
@@ -52,7 +51,7 @@ If ($afficheFormulaire){
         <label for="email">Email:</label>
         <input type="email" name="email" required>
 
-        <label class="error"><?php if (isset($message)) echo $message ?></label>
+        <?php if (isset($message)) echo "<label class=\"error\">$message</label>" ?>
 
         <input type="submit" value="Ajouter">
     </form>
