@@ -21,7 +21,7 @@ form {
 h2 {
     color: #333;
     text-align: center;
-    margin-bottom: 20px; /* Ajout d'un espace entre le titre et le formulaire */
+    margin-bottom: 20px;
 }
 
 label {
