@@ -13,4 +13,36 @@ class Magazine extends Media
     {
     }
 
+    /**
+     * @return int
+     */
+    public function getNumero(): int
+    {
+        return $this -> numero;
+    }
+
+    /**
+     * @param int $numero
+     */
+    public function setNumero(int $numero): void
+    {
+        $this -> numero = $numero;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDatePublication(): DateTime
+    {
+        return $this -> datePublication;
+    }
+
+    /**
+     * @param DateTime $datePublication
+     */
+    public function setDatePublication(DateTime $datePublication): void
+    {
+        $this -> datePublication = $datePublication;
+    }
+
 }
