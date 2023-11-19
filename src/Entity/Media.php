@@ -32,7 +32,7 @@ abstract class Media
     #[Column(length: 25)]
     protected string $status;
 
-    #[Column(type: 'string')]
+    #[Column(length: 10)]
     protected string $dateCreation;
 
     public function __construct()
