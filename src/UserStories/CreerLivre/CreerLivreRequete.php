@@ -1,10 +1,7 @@
 <?php
 
 namespace App\UserStories\CreerLivre;
-use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
-
-//L’ISBN doit être unique.
 
 class CreerLivreRequete
 {

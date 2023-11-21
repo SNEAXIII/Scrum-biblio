@@ -30,12 +30,15 @@ Class Adherant {
 -string nom
 -string email
 -dateTime dateAdhesion
++genererNombre():string
 }
 
 Class Emprunt {
 -dateTime dateEmprunt
 -dateTime dateretourEstime
 -dateTime dateretourEffectif
++isEnCours(): bool
++isEnRetard(): bool
 }
 
 Livre --|> Media
