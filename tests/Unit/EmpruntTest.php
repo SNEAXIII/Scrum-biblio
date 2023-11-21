@@ -33,7 +33,7 @@ class EmpruntTest extends TestCase
     /**
      * @test
      */
-    public function IsEnCours_isEnCours_False()
+    public function IsEnCours_DateRetourRenseignee_False()
     {
         $empruntFictif = new Emprunt();
         $empruntFictif->setDateRetourEstime(newDate(15));
@@ -46,7 +46,7 @@ class EmpruntTest extends TestCase
     /**
      * @test
      */
-    public function IsEnRetard_isEnRetard_True()
+    public function IsEnRetard_DateRetourNonRenseignee_True()
     {
         $empruntFictif = new Emprunt();
         // On simule un retard de 9 jours
@@ -61,7 +61,7 @@ class EmpruntTest extends TestCase
     /**
      * @test
      */
-    public function IsEnRetard_isEnRetard_False()
+    public function IsEnRetard_DateRetourNonRenseignee_False()
     {
         $empruntFictif = new Emprunt();
         // On simule un retard de 9 jours
