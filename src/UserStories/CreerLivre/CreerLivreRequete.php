@@ -1,6 +1,7 @@
 <?php
 
 namespace App\UserStories\CreerLivre;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CreerLivreRequete
@@ -15,6 +16,7 @@ class CreerLivreRequete
     public string $auteur;
 
     #[Assert\NotBlank(message: "Le nombre de pages doit être renseigné.")]
+    #[Assert\GreaterThan(value: 0, message: "Le nombre de pages doit être valide.")]
     public int $nombrePages;
 
     #[Assert\NotBlank(message: "La date de parution doit être renseignée.")]
@@ -24,16 +26,16 @@ class CreerLivreRequete
      * @param string $titre
      * @param string $isbn
      * @param string $auteur
-     * @param int $nombrePages
      * @param string $dateParution
+     * @param int $nombrePages
      */
-    public function __construct(string $titre, string $isbn, string $auteur, int $nombrePages, string $dateParution)
+    public function __construct(string $titre, string $isbn, string $auteur, string $dateParution, int $nombrePages = 0)
     {
-        $this -> titre = $titre;
-        $this -> isbn = $isbn;
-        $this -> auteur = $auteur;
-        $this -> nombrePages = $nombrePages;
-        $this -> dateCreation = $dateParution;
+        $this->titre = $titre;
+        $this->isbn = $isbn;
+        $this->auteur = $auteur;
+        $this->dateCreation = $dateParution;
+        $this->nombrePages = $nombrePages;
     }
 
     /**
@@ -41,7 +43,7 @@ class CreerLivreRequete
      */
     public function getTitre(): string
     {
-        return $this -> titre;
+        return $this->titre;
     }
 
     /**
@@ -49,7 +51,7 @@ class CreerLivreRequete
      */
     public function getIsbn(): string
     {
-        return $this -> isbn;
+        return $this->isbn;
     }
 
     /**
@@ -57,7 +59,7 @@ class CreerLivreRequete
      */
     public function getAuteur(): string
     {
-        return $this -> auteur;
+        return $this->auteur;
     }
 
     /**
@@ -65,7 +67,7 @@ class CreerLivreRequete
      */
     public function getNombrePages(): int
     {
-        return $this -> nombrePages;
+        return $this->nombrePages;
     }
 
     /**
@@ -73,7 +75,7 @@ class CreerLivreRequete
      */
     public function getDateCreation(): string
     {
-        return $this -> dateCreation;
+        return $this->dateCreation;
     }
 
 

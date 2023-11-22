@@ -23,8 +23,8 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "iiiiiiiii",
             "johndoe",
-            50,
-            "05/07/1984");
+            "05/07/1984",
+            50);
         $creerLivre = new CreerLivre(
             $this->entityManager,
             $this->validator
@@ -43,6 +43,113 @@ class CreerLivreTest extends TestCase
         $this->assertEquals("05/07/1984", $livre->getDateCreation());
         $this->assertEquals("Nouveau", $livre->getStatus());
         $this->assertTrue($resultat);
+    }
+
+    #[test]
+    public function creerLivre_TitreNonRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "",
+            "iiiiiiiii",
+            "johndoe",
+            "05/07/1984",
+            50);
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("titre");
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_ISBNNonRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "",
+            "johndoe",
+            "05/07/1984",
+            50
+        );
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("ISBN");
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_ISBNNonUnique_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "iiiiiiiii",
+            "johndoe",
+            "05/07/1984",
+            50
+        );
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $creerLivre->execute($requete);
+        $this->expectExceptionMessage("isbn existe");
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_AuteurNonRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "iiiiiiiii",
+            "",
+            "05/07/1984",
+            50
+        );
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("auteur");
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_NBPagesNonRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "iiiiiiiii",
+            "johndoe",
+            "05/07/1984"
+        );
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("pages");
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_DateCreationNonRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "iiiiiiiii",
+            "johndoe",
+            "",
+            50
+            );
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("date");
+        $creerLivre->execute($requete);
     }
 
     protected function setUp(): void
