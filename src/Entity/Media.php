@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
@@ -29,8 +30,8 @@ abstract class Media
     #[Column(type: "integer")]
     protected int $dureeEmprunt;
 
-    #[Column(length: 25)]
-    protected string $status;
+    #[Column(type: 'integer')]
+    protected int $status;
 
     #[Column(length: 10)]
     protected string $dateCreation;
@@ -80,20 +81,21 @@ abstract class Media
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getStatus(): string
+    public function getStatus(): int
     {
         return $this -> status;
     }
 
     /**
-     * @param string $status
+     * @param int $status
      */
-    public function setStatus(string $status): void
+    public function setStatus(int $status): void
     {
         $this -> status = $status;
     }
+
 
     /**
      * @return string

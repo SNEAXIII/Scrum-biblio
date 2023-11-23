@@ -2,6 +2,13 @@
 
 namespace App\Tests\Integration\UserStories;
 
+//todo fixer les const
+
+const NON_DISPONIBLE = 0;
+const NOUVEAU = 1;
+const VERIFICATION = 2;
+const EMPRUNTE = 3;
+
 use App\Entity\Livre;
 use App\UserStories\CreerLivre\{CreerLivre, CreerLivreRequete};
 use Doctrine\DBAL\DriverManager;
@@ -41,7 +48,7 @@ class CreerLivreTest extends TestCase
         $this->assertEquals("johndoe", $livre->getAuteur());
         $this->assertEquals(50, $livre->getNombrePages());
         $this->assertEquals("05/07/1984", $livre->getDateCreation());
-        $this->assertEquals("Nouveau", $livre->getStatus());
+        $this->assertEquals(NOUVEAU, $livre->getStatus());
         $this->assertTrue($resultat);
     }
 

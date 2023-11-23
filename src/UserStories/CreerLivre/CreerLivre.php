@@ -53,7 +53,7 @@ class CreerLivre
         $livre->setAuteur($requete->getAuteur());
         $livre->setNombrePages($requete->getNombrePages());
         $livre->setDateCreation($requete->getDateCreation());
-        $livre->setStatus("Nouveau");
+        $livre->setStatus(NOUVEAU);
         $livre->setDureeEmprunt(21);
         // Enregistrer l'adhérent en base de données
         $this->entityManager->persist($livre);

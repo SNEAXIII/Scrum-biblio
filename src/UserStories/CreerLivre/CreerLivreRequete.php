@@ -77,6 +77,4 @@ class CreerLivreRequete
     {
         return $this->dateCreation;
     }
-
-
 }
