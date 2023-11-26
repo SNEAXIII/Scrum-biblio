@@ -2,47 +2,54 @@
 
 namespace App\Entity;
 
-use DateTime;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
 
+#[Entity]
 class Magazine extends Media
 {
-    private int $numero;
-    private DateTime $datePublication;
+    #[Column(length: 20)]
+    private string $numero;
+
+    #[Column(length: 50)]
+    private string $datePublication;
 
     public function __construct()
     {
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getNumero(): int
+    public function getNumero(): string
     {
         return $this -> numero;
     }
 
     /**
-     * @param int $numero
+     * @param string $numero
      */
-    public function setNumero(int $numero): void
+    public function setNumero(string $numero): void
     {
         $this -> numero = $numero;
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDatePublication(): DateTime
+    public function getDatePublication(): string
     {
         return $this -> datePublication;
     }
 
     /**
-     * @param DateTime $datePublication
+     * @param string $datePublication
      */
-    public function setDatePublication(DateTime $datePublication): void
+    public function setDatePublication(string $datePublication): void
     {
         $this -> datePublication = $datePublication;
     }
+
+
 
 }

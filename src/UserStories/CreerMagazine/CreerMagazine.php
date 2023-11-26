@@ -1,13 +1,13 @@
 <?php
 
-namespace App\UserStories\CreerLivre;
+namespace App\UserStories\CreerMagazine;
 
-use App\Entity\Livre;
+use App\Entity\Magazine;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class CreerLivre
+class CreerMagazine
 {
     private EntityManagerInterface $entityManager;
     private ValidatorInterface $validator;
@@ -25,7 +25,7 @@ class CreerLivre
     /**
      * @throws Exception
      */
-    public function execute(CreerLivreRequete $requete): bool
+    public function execute(CreerMagazineRequete $requete): bool
     {
         // Valider les données en entrées (de la requête)
         $errors = $this->validator->validate($requete);
@@ -36,27 +36,18 @@ class CreerLivre
             }
             throw new Exception(implode("<br>", $messages));
         }
-        // Vérifier que l'isbn n'existe pas déjà
-        $getAdherantByIsbn =
-            $this->entityManager->
-            getRepository(Livre::class)->
-            findOneBy(["isbn" => $requete->getIsbn()]);
-        if ($getAdherantByIsbn) {
-            throw new Exception("L'isbn existe déja dans la base de données");
-        }
         // Créer le livre
 
-        $livre = new Livre();
-        $livre->setTitre($requete->getTitre());
-        $livre->setIsbn($requete->getIsbn());
-        $livre->setAuteur($requete->getAuteur());
-        $livre->setNombrePages($requete->getNombrePages());
-        $livre->setDateCreation($requete->getDateCreation());
-        $livre->setStatus(NOUVEAU);
-        $livre->setDureeEmprunt(21);
+        $magazine = new Magazine();
+        $magazine->setTitre($requete->getTitre());
+        $magazine->setNumero($requete->getNumero());
+        $magazine->setDatePublication($requete->getDatePublication());
+        $magazine->setDateCreation($requete->getDateCreation());
+        $magazine->setStatus(NOUVEAU);
+        $magazine->setDureeEmprunt(10);
         // Enregistrer l'adhérent en base de données
-        $this->entityManager->persist($livre);
-        $this->entityManager->flush($livre);
+        $this->entityManager->persist($magazine);
+        $this->entityManager->flush($magazine);
         return true;
     }
 }

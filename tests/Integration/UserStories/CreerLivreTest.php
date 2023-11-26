@@ -37,6 +37,7 @@ class CreerLivreTest extends TestCase
         /** @var Livre $livre */
         $livre = $repository->findOneBy($criteria);
         $this->assertNotNull($livre);
+        $this->assertEquals("iiiiiiiii", $livre->getIsbn());
         $this->assertEquals("La déchéance humaine", $livre->getTitre());
         $this->assertEquals("johndoe", $livre->getAuteur());
         $this->assertEquals(50, $livre->getNombrePages());

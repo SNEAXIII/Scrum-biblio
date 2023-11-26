@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping\InheritanceType;
 #[Entity]
 #[InheritanceType("JOINED")]
 #[DiscriminatorColumn(name: "type", type: "string")]
-#[DiscriminatorMap(["livre" => "Livre"])]
+#[DiscriminatorMap(["livre" => "Livre","magazine" => "Magazine"])]
 abstract class Media
 {
     #[Id]
