@@ -2,13 +2,6 @@
 
 namespace App\Tests\Integration\UserStories;
 
-//todo fixer les const
-
-const NON_DISPONIBLE = 0;
-const NOUVEAU = 1;
-const VERIFICATION = 2;
-const EMPRUNTE = 3;
-
 use App\Entity\Livre;
 use App\UserStories\CreerLivre\{CreerLivre, CreerLivreRequete};
 use Doctrine\DBAL\DriverManager;

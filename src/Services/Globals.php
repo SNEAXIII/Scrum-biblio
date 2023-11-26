@@ -1,5 +1,4 @@
 <?php
-namespace App;
 
 const NON_DISPONIBLE = 0;
 const NOUVEAU = 1;
