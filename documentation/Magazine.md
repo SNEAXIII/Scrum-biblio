@@ -1,49 +1,41 @@
 [//]: # (todo finir ca)
 
-# Classe Livre
+# Classe Magazine
 
-Pour créer un nouveau livre dans la base donnée, il faut créer un objet de la classe `CreerLivreRequete` avec les
+Pour créer un nouveau magazine dans la base donnée, il faut créer un objet de la classe `CreerMagazineRequete` avec les
 attributs spécifiés plus tard.
 
-## Classe CreerLivreRequete
+## Classe CreerMagazineRequete
 
-Cette classe représente les propriétés d'un livre :
+Cette classe représente les propriétés d'un magazine :
 
 ### `$titre`
 
 - Type : `string`
-- Description : Le titre du livre.
+- Description : Le titre du magazine.
 - Contraintes de validation : Le titre ne doit pas être vide.
 
-### `$isbn`
+### `numero`
 
 - Type : `string`
-- Description : L'ISBN du livre.
+- Description : Le numéro du magazine.
 - Contraintes de validation : L'ISBN ne doit pas être vide.
 
-### `$auteur`
+### `$datePublication`
 
 - Type : `string`
-- Description : Le nom de l'auteur du livre.
-- Contraintes de validation : Le nom de l'auteur ne doit pas être vide.
-
-### `$nombrePages`
-
-- Type : `int`
-- Description : Le nombre de pages du livre.
-- Contraintes de validation :
-    - Le nombre de pages ne doit pas être vide.
-    - Le nombre de pages doit être supérieur à 0.
+- Description : La date de publication du magazine.
+- Contraintes de validation : La date de création ne doit pas être vide.
 
 ### `$dateCreation`
 
 - Type : `string`
-- Description : La date de création du livre.
+- Description : La date de création du magazine.
 - Contraintes de validation : La date de création ne doit pas être vide.
 
-## Classe CreerLivre
+## Classe CreerMagazine
 
-Cette classe permet de créer un livre dans la base de donnée, elle utilise les paramètres suivants :
+Cette classe permet de créer un magazine dans la base de donnée, elle utilise les paramètres suivants :
 
 ### $entityManager
 
@@ -57,14 +49,13 @@ Cette classe permet de créer un livre dans la base de donnée, elle utilise les
 
 ### execute(`$requete`) : bool
 
-- Type `$requete` : `CreerLivreRequete`
-- Description : Essaye d'exécuter la requête afin d'ajouter un livre dans la base de donnée, retourne `true` si
+- Type `$requete` : `CreerMagazineRequete`
+- Description : Essaye d'exécuter la requête afin d'ajouter un magazine dans la base de donnée, retourne `true` si
   l'enregistrement à bien été enregistré dans la base de donnée, sinon renvoie une exception.
 
 ## Exemple de code
 
-[//]: # (todo demander au prof si c'est normal)
-
+```php
 // Configuration de la connexion à la base de données
 // Utilisation d'une base de données SQLite en mémoire
 $connection = DriverManager::getConnection(['driver' => 'pdo_sqlite','path' => ':memory:'], $config);
@@ -80,7 +71,8 @@ $schemaTool->createSchema($metadata);
 
 $requete = new CreerLivreRequete("La déchéance humaine","iiiiiiiii","johndoe","05/07/1984",50);
 
-$creerLivre = new CreerLivre($entityManager,$validator);
+$creerMagazine = new CreerMagazine($entityManager,$validator);
 
-// Act
-$resultat = $creerLivre->execute($requete);
+// Enregistrer dans la BDD
+$resultat = $creerMagazine->execute($requete);
+```

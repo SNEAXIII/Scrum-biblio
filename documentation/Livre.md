@@ -61,8 +61,7 @@ Cette classe permet de créer un livre dans la base de donnée, elle utilise les
 
 ## Exemple de code
 
-[//]: # (todo demander au prof si c'est normal)
-
+```php
 // Configuration de la connexion à la base de données
 // Utilisation d'une base de données SQLite en mémoire
 $connection = DriverManager::getConnection(['driver' => 'pdo_sqlite','path' => ':memory:'], $config);
@@ -80,5 +79,6 @@ $requete = new CreerLivreRequete("La déchéance humaine","iiiiiiiii","johndoe",
 
 $creerLivre = new CreerLivre($entityManager,$validator);
 
-// Act
+// Enregistrer dans la BDD
 $resultat = $creerLivre->execute($requete);
+```

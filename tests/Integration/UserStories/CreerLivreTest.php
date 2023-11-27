@@ -131,7 +131,23 @@ class CreerLivreTest extends TestCase
             $this->entityManager,
             $this->validator
         );
-        $this->expectExceptionMessage("pages");
+        $this->expectExceptionMessage("pages doit être renseigné");
+        $creerLivre->execute($requete);
+    }
+    #[test]
+    public function creerLivre_NBPagesMalRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "iiiiiiiii",
+            "johndoe",
+            "05/07/1984",
+            -10);
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("de pages doit être valide");
         $creerLivre->execute($requete);
     }
 
