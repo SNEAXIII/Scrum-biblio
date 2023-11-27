@@ -12,34 +12,54 @@ class LivreForm extends MediaForm
     {
     }
 
-    public function getIsbn(): string
+    /**
+     * @return string|null
+     */
+    public function getIsbn(): ?string
     {
-        return $this->isbn;
+        return $this -> isbn;
     }
 
-    public function setIsbn(string $isbn): void
+    /**
+     * @param string|null $isbn
+     */
+    public function setIsbn(?string $isbn): void
     {
-        $this->isbn = $isbn;
+        $this -> isbn = $isbn;
     }
 
-    public function getAuteur(): string
+    /**
+     * @return string|null
+     */
+    public function getAuteur(): ?string
     {
-        return $this->auteur;
+        return $this -> auteur;
     }
 
-    public function setAuteur(string $auteur): void
+    /**
+     * @param string|null $auteur
+     */
+    public function setAuteur(?string $auteur): void
     {
-        $this->auteur = $auteur;
+        $this -> auteur = $auteur;
     }
 
-    public function getNombrePages(): int
+    /**
+     * @return int|null
+     */
+    public function getNombrePages(): ?int
     {
-        return $this->nombrePages;
+        return $this -> nombrePages;
     }
 
-    public function setNombrePages(int $nombrePages): void
+    /**
+     * @param int|null $nombrePages
+     */
+    public function setNombrePages(?int $nombrePages): void
     {
-        $this->nombrePages = $nombrePages;
+        $this -> nombrePages = $nombrePages;
     }
+
+
 
 }

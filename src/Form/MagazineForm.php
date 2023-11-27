@@ -2,10 +2,10 @@
 
 namespace App\Form;
 
-class MagazineForm
+class MagazineForm extends MediaForm
 {
     private ?string $numero;
-    private ?string $dateCreation;
+    private ?string $datePublication;
 
     public function __construct()
     {
@@ -21,14 +21,20 @@ class MagazineForm
         $this->numero = $numero;
     }
 
-    public function getDateCreation(): ?string
+    /**
+     * @return string|null
+     */
+    public function getDatePublication(): ?string
     {
-        return $this->dateCreation;
+        return $this -> datePublication;
     }
 
-    public function setDateCreation(?string $dateCreation): void
+    /**
+     * @param string|null $datePublication
+     */
+    public function setDatePublication(?string $datePublication): void
     {
-        $this->dateCreation = $dateCreation;
+        $this -> datePublication = $datePublication;
     }
 
 
