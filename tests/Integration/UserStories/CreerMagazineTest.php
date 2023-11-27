@@ -82,7 +82,6 @@ class CreerMagazineTest extends TestCase
     #[test]
     public function creerMagazine_DatePublicationNonRenseigne_Exception()
     {
-//        todo verifier
         $requete = new CreerMagazineRequete(
             "La déchéance humaine",
             "15 bis",
