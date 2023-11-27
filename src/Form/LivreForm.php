@@ -4,9 +4,9 @@ namespace App\Form;
 
 class LivreForm extends MediaForm
 {
-    private string $isbn;
-    private string $auteur;
-    private int $nombrePages;
+    private ?string $isbn;
+    private ?string $auteur;
+    private ?int $nombrePages;
 
     public function __construct()
     {

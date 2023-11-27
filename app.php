@@ -1,12 +1,6 @@
 <?php
 namespace root;
 
-//todo probleme avec les constantes
-const NON_DISPONIBLE = 0;
-const NOUVEAU = 1;
-const VERIFICATION = 2;
-const EMPRUNTE = 3;
-
 require_once "./vendor/autoload.php";
 /* @var $entityManager */
 require_once "./bootstrap.php";

@@ -35,6 +35,7 @@
     "delDB": "./vendor/bin/doctrine orm:schema-tool:drop --force",
     "updateDB": "./vendor/bin/doctrine orm:schema-tool:update --force",
     "createDB": "./vendor/bin/doctrine orm:schema-tool:create",
-    "spy": "java -jar ./src/SchemaSpy/schemaspy.jar -t mariadb -dp ./src/SchemaSpy/mariadb.jar -db db_bibliotheque -host localhost -port 3306 -o ./documentation/schemaspy -u root -s db_bibliotheque"
+    "spy": "java -jar ./src/SchemaSpy/schemaspy.jar -t mariadb -dp ./src/SchemaSpy/mariadb.jar -db db_bibliotheque -host localhost -port 3306 -o ./documentation/schemaspy -u root -s db_bibliotheque",
+    "addLivre" : "php app.php biblio:add Livre"
   }
 }

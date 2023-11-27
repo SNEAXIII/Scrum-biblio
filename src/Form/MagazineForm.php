@@ -4,31 +4,33 @@ namespace App\Form;
 
 class MagazineForm
 {
-    private string $numero;
-    private string $dateCreation;
+    private ?string $numero;
+    private ?string $dateCreation;
 
     public function __construct()
     {
     }
 
-    public function getNumero(): string
+    public function getNumero(): ?string
     {
         return $this->numero;
     }
 
-    public function setNumero(string $numero): void
+    public function setNumero(?string $numero): void
     {
         $this->numero = $numero;
     }
 
-    public function getDateCreation(): string
+    public function getDateCreation(): ?string
     {
         return $this->dateCreation;
     }
 
-    public function setDateCreation(string $dateCreation): void
+    public function setDateCreation(?string $dateCreation): void
     {
         $this->dateCreation = $dateCreation;
     }
+
+
 
 }

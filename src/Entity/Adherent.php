@@ -19,16 +19,16 @@ class Adherent
     private int $id;
 
     #[Column(length: 9)]
-    private string $numeroAdherent;
+    private ?string $numeroAdherent;
 
     #[Column(length: 50)]
-    private string $nom;
+    private ?string $nom;
 
     #[Column(length: 50)]
-    private string $prenom;
+    private ?string $prenom;
 
     #[Column(length: 140)]
-    private string $email;
+    private ?string $email;
 
     #[Column(type: 'date')]
     private ?DateTime $dateAdhesion;

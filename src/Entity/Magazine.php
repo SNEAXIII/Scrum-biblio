@@ -9,45 +9,33 @@ use Doctrine\ORM\Mapping\Entity;
 class Magazine extends Media
 {
     #[Column(length: 20)]
-    private string $numero;
+    private ?string $numero;
 
     #[Column(length: 50)]
-    private string $datePublication;
+    private ?string $datePublication;
 
     public function __construct()
     {
     }
 
-    /**
-     * @return string
-     */
-    public function getNumero(): string
+    public function getNumero(): ?string
     {
-        return $this -> numero;
+        return $this->numero;
     }
 
-    /**
-     * @param string $numero
-     */
-    public function setNumero(string $numero): void
+    public function setNumero(?string $numero): void
     {
-        $this -> numero = $numero;
+        $this->numero = $numero;
     }
 
-    /**
-     * @return string
-     */
-    public function getDatePublication(): string
+    public function getDatePublication(): ?string
     {
-        return $this -> datePublication;
+        return $this->datePublication;
     }
 
-    /**
-     * @param string $datePublication
-     */
-    public function setDatePublication(string $datePublication): void
+    public function setDatePublication(?string $datePublication): void
     {
-        $this -> datePublication = $datePublication;
+        $this->datePublication = $datePublication;
     }
 
 

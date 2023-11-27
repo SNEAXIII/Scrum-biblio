@@ -11,10 +11,10 @@ use Doctrine\ORM\Mapping\Entity;
 class Livre extends Media
 {
     #[Column(length: 25)]
-    private string $isbn;
+    private ?string $isbn;
 
     #[Column(length: 60)]
-    private string $auteur;
+    private ?string $auteur;
 
 
     #[Column(type: 'integer', nullable: true)]

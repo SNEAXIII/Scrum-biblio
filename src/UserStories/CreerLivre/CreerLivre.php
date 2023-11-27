@@ -7,6 +7,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+const NON_DISPONIBLE = 0;
+const NOUVEAU = 1;
+const VERIFICATION = 2;
+const EMPRUNTE = 3;
+
 class CreerLivre
 {
     private EntityManagerInterface $entityManager;

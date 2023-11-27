@@ -25,92 +25,66 @@ abstract class Media
     protected int $id;
 
     #[Column(length: 100)]
-    protected string $titre;
+    protected ?string $titre;
 
     #[Column(type: "integer")]
-    protected int $dureeEmprunt;
+    protected ?int $dureeEmprunt;
 
     #[Column(type: 'integer')]
-    protected int $status;
+    protected ?int $status;
 
     #[Column(length: 10)]
-    protected string $dateCreation;
+    protected ?string $dateCreation;
 
     public function __construct()
     {
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
-        return $this -> id;
+        return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getTitre(): string
+    public function getTitre(): ?string
     {
-        return $this -> titre;
+        return $this->titre;
     }
 
-    /**
-     * @param string $titre
-     */
-    public function setTitre(string $titre): void
+    public function setTitre(?string $titre): void
     {
-        $this -> titre = $titre;
+        $this->titre = $titre;
     }
 
-    /**
-     * @return int
-     */
-    public function getDureeEmprunt(): int
+    public function getDureeEmprunt(): ?int
     {
-        return $this -> dureeEmprunt;
+        return $this->dureeEmprunt;
     }
 
-    /**
-     * @param int $dureeEmprunt
-     */
-    public function setDureeEmprunt(int $dureeEmprunt): void
+    public function setDureeEmprunt(?int $dureeEmprunt): void
     {
-        $this -> dureeEmprunt = $dureeEmprunt;
+        $this->dureeEmprunt = $dureeEmprunt;
     }
 
-    /**
-     * @return int
-     */
-    public function getStatus(): int
+    public function getStatus(): ?int
     {
-        return $this -> status;
+        return $this->status;
     }
 
-    /**
-     * @param int $status
-     */
-    public function setStatus(int $status): void
+    public function setStatus(?int $status): void
     {
-        $this -> status = $status;
+        $this->status = $status;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getDateCreation(): string
+    public function getDateCreation(): ?string
     {
-        return $this -> dateCreation;
+        return $this->dateCreation;
     }
 
-    /**
-     * @param string $dateCreation
-     */
-    public function setDateCreation(string $dateCreation): void
+    public function setDateCreation(?string $dateCreation): void
     {
-        $this -> dateCreation = $dateCreation;
+        $this->dateCreation = $dateCreation;
     }
+
+
 
 }
