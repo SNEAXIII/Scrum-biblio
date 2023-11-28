@@ -1,3 +1,17 @@
+# User story - Créer un livre
+
+```
+En tant que bibliothécaire
+Je veux créer un livre
+Afin de le rendre accessible aux adhérents de la bibliothèque
+```
+# Critères d’acceptation
+
+```
+Le titre, l’ISBN, l’auteur, le nombre de pages et la date de parution doivent être renseignés.
+L’ISBN doit être unique.
+```
+
 # Classe Livre
 
 Pour créer un nouveau livre dans la base donnée, il faut créer un objet de la classe `CreerLivreRequete` avec les

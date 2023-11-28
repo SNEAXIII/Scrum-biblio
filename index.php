@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $generator = new GeneratorNumeroAdherent();
     $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
     $creerAdherent = new CreerAdherent($entityManager,$generator,$validator);
-    $requete = new CreerAdherentRequete($_POST["nom"],$_POST["prenom"],$_POST["email"]);
+    $requete = new CreerAdherentRequete($_POST["prenom"],$_POST["nom"],$_POST["email"]);
 
     // Execution de la requête
     try {

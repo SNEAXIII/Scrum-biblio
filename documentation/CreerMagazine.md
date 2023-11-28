@@ -1,4 +1,16 @@
-[//]: # (todo finir ca)
+# User story - Créer un magazine
+
+```
+En tant que bibliothécaire
+Je veux créer un livre
+Afin de le rendre accessible aux adhérents de la bibliothèque
+```
+# Critères d’acceptation
+
+```
+Le titre, le numéro et la date de parution doivent être renseignés.
+```
+
 
 # Classe Magazine
 
