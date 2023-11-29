@@ -47,12 +47,6 @@ Cette classe représente les propriétés d'un livre :
     - Le nombre de pages ne doit pas être vide.
     - Le nombre de pages doit être supérieur à 0.
 
-### `$dateCreation`
-
-- Type : `string`
-- Description : La date de création du livre.
-- Contraintes de validation : La date de création ne doit pas être vide.
-
 ## Classe CreerLivre
 
 Cette classe permet de créer un livre dans la base de donnée, elle utilise les paramètres suivants :
@@ -89,7 +83,7 @@ $schemaTool = new SchemaTool($entityManager);
 $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
 $schemaTool->createSchema($metadata);
 
-$requete = new CreerLivreRequete("La déchéance humaine","iiiiiiiii","johndoe","05/07/1984",50);
+$requete = new CreerLivreRequete("La déchéance humaine","iiiiiiiii","johndoe",50);
 
 $creerLivre = new CreerLivre($entityManager,$validator);
 

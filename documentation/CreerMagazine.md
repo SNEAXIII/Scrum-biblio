@@ -39,12 +39,6 @@ Cette classe représente les propriétés d'un magazine :
 - Description : La date de publication du magazine.
 - Contraintes de validation : La date de création ne doit pas être vide.
 
-### `$dateCreation`
-
-- Type : `string`
-- Description : La date de création du magazine.
-- Contraintes de validation : La date de création ne doit pas être vide.
-
 ## Classe CreerMagazine
 
 Cette classe permet de créer un magazine dans la base de donnée, elle utilise les paramètres suivants :
@@ -81,7 +75,7 @@ $schemaTool = new SchemaTool($entityManager);
 $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
 $schemaTool->createSchema($metadata);
 
-$requete = new CreerLivreRequete("La déchéance humaine","iiiiiiiii","johndoe","05/07/1984",50);
+$requete = new CreerLivreRequete("La déchéance humaine","iiiiiiiii","johndoe",50);
 
 $creerMagazine = new CreerMagazine($entityManager,$validator);
 
