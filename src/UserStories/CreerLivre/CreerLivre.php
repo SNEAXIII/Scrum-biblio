@@ -3,14 +3,11 @@
 namespace App\UserStories\CreerLivre;
 
 use App\Entity\Livre;
+use App\Services\DureeEmprunt;
+use App\Services\StatusMedia;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-
-const NON_DISPONIBLE = 0;
-const NOUVEAU = 1;
-const VERIFICATION = 2;
-const EMPRUNTE = 3;
 
 class CreerLivre
 {
@@ -56,9 +53,9 @@ class CreerLivre
         $livre->setIsbn($requete->getIsbn());
         $livre->setAuteur($requete->getAuteur());
         $livre->setNombrePages($requete->getNombrePages());
-        $livre->setDateCreation($requete->getDateCreation());
-        $livre->setStatus(NOUVEAU);
-        $livre->setDureeEmprunt(21);
+        $livre->setDateCreation(new \DateTime());
+        $livre->setStatus(StatusMedia::NOUVEAU);
+        $livre->setDureeEmprunt(DureeEmprunt::LIVRE);
         // Enregistrer l'adhérent en base de données
         $this->entityManager->persist($livre);
         $this->entityManager->flush($livre);

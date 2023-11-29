@@ -43,10 +43,8 @@ function getMediaForm(MediaForm $mediaForm, Style $io): MediaForm
 {
 
     $titre = $io->ask("Veuillez saisir un titre ");
-    $dateCreation = $io->ask("Veuillez saisir une date de creation ");
 
     $mediaForm->setTitre($titre);
-    $mediaForm->setDateCreation($dateCreation);
 
     return $mediaForm;
 }
@@ -118,7 +116,6 @@ $app->command(
             $livreForm->getTitre(),
             $livreForm->getIsbn(),
             $livreForm->getAuteur(),
-            $livreForm->getDateCreation(),
             $livreForm->getNombrePages(),
         );
         $creerLivre = new CreerLivre(
@@ -159,7 +156,6 @@ $app->command(
             $magazineForm->getTitre(),
             $magazineForm->getNumero(),
             $magazineForm->getDatePublication(),
-            $magazineForm->getDateCreation(),
         );
         $creerMagazine = new CreerMagazine(
             $entityManager,

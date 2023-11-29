@@ -35,7 +35,7 @@ abstract class Media
     protected ?int $status;
 
     #[Column(length: 10)]
-    protected ?string $dateCreation;
+    protected ?DateTime $dateCreation;
 
     public function __construct()
     {
@@ -76,12 +76,12 @@ abstract class Media
         $this->status = $status;
     }
 
-    public function getDateCreation(): ?string
+    public function getDateCreation(): ?DateTime
     {
         return $this->dateCreation;
     }
 
-    public function setDateCreation(?string $dateCreation): void
+    public function setDateCreation(?DateTime $dateCreation): void
     {
         $this->dateCreation = $dateCreation;
     }

@@ -3,14 +3,11 @@
 namespace App\UserStories\CreerMagazine;
 
 use App\Entity\Magazine;
+use App\Services\DureeEmprunt;
+use App\Services\StatusMedia;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-
-const NON_DISPONIBLE = 0;
-const NOUVEAU = 1;
-const VERIFICATION = 2;
-const EMPRUNTE = 3;
 
 class CreerMagazine
 {
@@ -47,9 +44,10 @@ class CreerMagazine
         $magazine->setTitre($requete->getTitre());
         $magazine->setNumero($requete->getNumero());
         $magazine->setDatePublication($requete->getDatePublication());
-        $magazine->setDateCreation($requete->getDateCreation());
-        $magazine->setStatus(NOUVEAU);
-        $magazine->setDureeEmprunt(10);
+//        todo fix ca
+        $magazine->setDateCreation(new \DateTime());
+        $magazine->setStatus(StatusMedia::NOUVEAU);
+        $magazine->setDureeEmprunt(DureeEmprunt::MAGAZINE);
         // Enregistrer l'adhérent en base de données
         $this->entityManager->persist($magazine);
         $this->entityManager->flush($magazine);

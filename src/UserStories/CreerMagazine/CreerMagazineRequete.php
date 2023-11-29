@@ -15,53 +15,32 @@ class CreerMagazineRequete
     #[Assert\NotBlank(message: "La date de publication doit être renseignée.")]
     public string $datePublication;
 
-    #[Assert\NotBlank(message: "La date de creation doit être renseignée.")]
-    public string $dateCreation;
-
     /**
      * @param string $titre
      * @param string $numero
      * @param string $datePublication
-     * @param string $dateCreation
      */
-    public function __construct(string $titre, string $numero, string $datePublication, string $dateCreation)
+    public function __construct(string $titre, string $numero, string $datePublication)
     {
-        $this -> titre = $titre;
-        $this -> numero = $numero;
-        $this -> datePublication = $datePublication;
-        $this -> dateCreation = $dateCreation;
+        $this->titre = $titre;
+        $this->numero = $numero;
+        $this->datePublication = $datePublication;
     }
 
-    /**
-     * @return string
-     */
     public function getTitre(): string
     {
-        return $this -> titre;
+        return $this->titre;
     }
 
-    /**
-     * @return string
-     */
     public function getNumero(): string
     {
-        return $this -> numero;
+        return $this->numero;
     }
 
-    /**
-     * @return string
-     */
     public function getDatePublication(): string
     {
-        return $this -> datePublication;
+        return $this->datePublication;
     }
 
-    /**
-     * @return string
-     */
-    public function getDateCreation(): string
-    {
-        return $this -> dateCreation;
-    }
 
 }

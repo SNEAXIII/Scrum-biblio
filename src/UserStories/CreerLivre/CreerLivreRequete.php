@@ -19,37 +19,31 @@ class CreerLivreRequete
     #[Assert\GreaterThan(value: 0, message: "Le nombre de pages doit être valide.")]
     public ?int $nombrePages;
 
-    #[Assert\NotBlank(message: "La date de parution doit être renseignée.")]
-    public ?string $dateCreation;
-
     /**
      * @param string|null $titre
      * @param string|null $isbn
      * @param string|null $auteur
      * @param int|null $nombrePages
-     * @param string|null $dateCreation
      */
-    public function __construct(?string $titre, ?string $isbn, ?string $auteur, ?string $dateCreation,?int $nombrePages = null)
+    public function __construct(?string $titre, ?string $isbn, ?string $auteur, ?int $nombrePages)
     {
-        $this -> titre = $titre;
-        $this -> isbn = $isbn;
-        $this -> auteur = $auteur;
-        $this -> nombrePages = $nombrePages;
-        $this -> dateCreation = $dateCreation;
+        $this->titre = $titre;
+        $this->isbn = $isbn;
+        $this->auteur = $auteur;
+        $this->nombrePages = $nombrePages;
     }
 
-
-    public function getTitre(): string
+    public function getTitre(): ?string
     {
         return $this->titre;
     }
 
-    public function getIsbn(): string
+    public function getIsbn(): ?string
     {
         return $this->isbn;
     }
 
-    public function getAuteur(): string
+    public function getAuteur(): ?string
     {
         return $this->auteur;
     }
@@ -58,11 +52,4 @@ class CreerLivreRequete
     {
         return $this->nombrePages;
     }
-
-    public function getDateCreation(): string
-    {
-        return $this->dateCreation;
-    }
-
-
 }
