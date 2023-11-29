@@ -3,6 +3,7 @@
 namespace App\Tests\Integration\UserStories;
 
 use App\Entity\Magazine;
+use App\Services\StatusMedia;
 use App\UserStories\CreerMagazine\{CreerMagazine, CreerMagazineRequete};
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup, Tools\SchemaTool};
@@ -22,8 +23,7 @@ class CreerMagazineTest extends TestCase
         $requete = new CreerMagazineRequete(
             "La déchéance humaine",
             "15 bis",
-            "01/07/1984",
-            "05/07/1984"
+            "01/07/1984"
         );
         $creerMagazine = new CreerMagazine(
             $this->entityManager,
@@ -32,7 +32,7 @@ class CreerMagazineTest extends TestCase
         // Act
         $resultat = $creerMagazine->execute($requete);
         $repository = $this->entityManager->getRepository(Magazine::class);
-        $criteria = ["titre" => "La déchéance humaine","numero" =>"15 bis"];
+        $criteria = ["titre" => "La déchéance humaine", "numero" => "15 bis"];
         /** @var Magazine $magazine */
         $magazine = $repository->findOneBy($criteria);
         // Assert
@@ -40,8 +40,8 @@ class CreerMagazineTest extends TestCase
         $this->assertEquals("La déchéance humaine", $magazine->getTitre());
         $this->assertEquals("15 bis", $magazine->getNumero());
         $this->assertEquals("01/07/1984", $magazine->getDatePublication());
-        $this->assertEquals("05/07/1984", $magazine->getDateCreation());
-        $this->assertEquals(NOUVEAU, $magazine->getStatus());
+        $this->assertEquals((new \DateTime())->format("d/m/Y"), $magazine->getDateCreation()->format("d/m/Y"));
+        $this->assertEquals(StatusMedia::NOUVEAU, $magazine->getStatus());
         $this->assertTrue($resultat);
     }
 
@@ -51,8 +51,7 @@ class CreerMagazineTest extends TestCase
         $requete = new CreerMagazineRequete(
             "",
             "15 bis",
-            "01/07/1984",
-            "05/07/1984"
+            "01/07/1984"
         );
         $creerMagazine = new CreerMagazine(
             $this->entityManager,
@@ -68,8 +67,7 @@ class CreerMagazineTest extends TestCase
         $requete = new CreerMagazineRequete(
             "La déchéance humaine",
             "",
-            "01/07/1984",
-            "05/07/1984"
+            "01/07/1984"
         );
         $creerMagazine = new CreerMagazine(
             $this->entityManager,
@@ -85,31 +83,13 @@ class CreerMagazineTest extends TestCase
         $requete = new CreerMagazineRequete(
             "La déchéance humaine",
             "15 bis",
-            "",
-            "05/07/1984"
-        );
-        $creerMagazine = new CreerMagazine(
-            $this->entityManager,
-            $this->validator
-        );
-        $this->expectExceptionMessage("publication");
-        $creerMagazine->execute($requete);
-    }
-
-    #[test]
-    public function creerMagazine_DateCreationNonRenseigne_Exception()
-    {
-        $requete = new CreerMagazineRequete(
-            "La déchéance humaine",
-            "15 bis",
-            "01/07/1984",
             ""
         );
         $creerMagazine = new CreerMagazine(
             $this->entityManager,
             $this->validator
         );
-        $this->expectExceptionMessage("creation");
+        $this->expectExceptionMessage("publication");
         $creerMagazine->execute($requete);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Tests\Integration\UserStories;
 
 use App\Entity\Livre;
+use App\Services\StatusMedia;
 use App\UserStories\CreerLivre\{CreerLivre, CreerLivreRequete};
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup, Tools\SchemaTool};
@@ -23,7 +24,7 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "iiiiiiiii",
             "johndoe",
-            "05/07/1984",
+
             50);
         $creerLivre = new CreerLivre(
             $this->entityManager,
@@ -41,8 +42,8 @@ class CreerLivreTest extends TestCase
         $this->assertEquals("La déchéance humaine", $livre->getTitre());
         $this->assertEquals("johndoe", $livre->getAuteur());
         $this->assertEquals(50, $livre->getNombrePages());
-        $this->assertEquals("05/07/1984", $livre->getDateCreation());
-        $this->assertEquals(NOUVEAU, $livre->getStatus());
+        $this->assertEquals((new \DateTime())->format("d/m/Y"), $livre->getDateCreation()->format("d/m/Y"));
+        $this->assertEquals(StatusMedia::NOUVEAU, $livre->getStatus());
         $this->assertTrue($resultat);
     }
 
@@ -53,7 +54,7 @@ class CreerLivreTest extends TestCase
             "",
             "iiiiiiiii",
             "johndoe",
-            "05/07/1984",
+
             50);
         $creerLivre = new CreerLivre(
             $this->entityManager,
@@ -70,7 +71,7 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "",
             "johndoe",
-            "05/07/1984",
+
             50
         );
         $creerLivre = new CreerLivre(
@@ -88,7 +89,7 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "iiiiiiiii",
             "johndoe",
-            "05/07/1984",
+
             50
         );
         $creerLivre = new CreerLivre(
@@ -107,7 +108,7 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "iiiiiiiii",
             "",
-            "05/07/1984",
+
             50
         );
         $creerLivre = new CreerLivre(
@@ -125,7 +126,7 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "iiiiiiiii",
             "johndoe",
-            "05/07/1984"
+            null
         );
         $creerLivre = new CreerLivre(
             $this->entityManager,
@@ -141,31 +142,13 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "iiiiiiiii",
             "johndoe",
-            "05/07/1984",
-            -10);
+            -10
+        );
         $creerLivre = new CreerLivre(
             $this->entityManager,
             $this->validator
         );
         $this->expectExceptionMessage("de pages doit être valide");
-        $creerLivre->execute($requete);
-    }
-
-    #[test]
-    public function creerLivre_DateCreationNonRenseigne_Exception()
-    {
-        $requete = new CreerLivreRequete(
-            "La déchéance humaine",
-            "iiiiiiiii",
-            "johndoe",
-            "",
-            50
-            );
-        $creerLivre = new CreerLivre(
-            $this->entityManager,
-            $this->validator
-        );
-        $this->expectExceptionMessage("date");
         $creerLivre->execute($requete);
     }
 
