@@ -6,17 +6,20 @@ require_once "./vendor/autoload.php";
 /* @var $entityManager */
 require_once "./bootstrap.php";
 
+use App\Entity\Media;
 use App\Form\AdherentForm;
 use App\Form\LivreForm;
 use App\Form\MagazineForm;
 use App\Form\MediaForm;
 use App\Services\GeneratorNumeroAdherent;
+use App\Services\StatusMedia;
 use App\UserStories\CreerAdherent\CreerAdherent;
 use App\UserStories\CreerAdherent\CreerAdherentRequete;
 use App\UserStories\CreerLivre\CreerLivre;
 use App\UserStories\CreerLivre\CreerLivreRequete;
 use App\UserStories\CreerMagazine\CreerMagazine;
 use App\UserStories\CreerMagazine\CreerMagazineRequete;
+use App\UserStories\ListerNouveauMedia\ListerNouveauMedia;
 use Silly\Application;
 use Symfony\Component\Console\Style\SymfonyStyle as Style;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -165,6 +168,16 @@ $app->command(
         printEnd($reussi, "Magazine", $io);
     },
     ["biblio:add:magazine"]
+);
+$app->command(
+    'biblio:get:all',
+    function (Style $io)
+    use ($entityManager) {
+        $listerMedia = new ListerNouveauMedia($entityManager);
+        $arrayNouveauMedia = $listerMedia->execute();
+//        todo continue here
+    },
+    ["biblio:get:All"]
 );
 
 $app->run();

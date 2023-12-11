@@ -3,9 +3,9 @@
 namespace App\UserStories\ListerNouveauMedia;
 
 use App\Entity\Media;
+use App\Services\MediaNormalizeArray;
 use App\Services\StatusMedia;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\VarDumper\Caster\ClassStub;
 
 class ListerNouveauMedia
 {
@@ -21,6 +21,9 @@ class ListerNouveauMedia
 
     public function execute(): ?array
     {
-        return $this->entityManager->getRepository(Media::class)->findBy(["status"=>StatusMedia::NOUVEAU]);
+        $rawArrayMedia = $this->entityManager
+            ->getRepository(Media::class)
+            ->findBy(["status" => StatusMedia::NOUVEAU ],$orderBy = ["dateCreation" => "DESC"]);
+        return (new MediaNormalizeArray)->execute($rawArrayMedia);
     }
 }

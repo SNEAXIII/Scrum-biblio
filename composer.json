@@ -29,7 +29,8 @@
   "require-dev": {
     "symfony/var-dumper": "^6.3",
     "phpunit/phpunit": "^10.4",
-    "fzaninotto/faker": "^1.5"
+    "fzaninotto/faker": "^1.5",
+    "jolicode/jolinotif": "^2.6"
   },
   "scripts": {
     "tests":"./vendor/bin/phpunit tests --color=always --testdox",
