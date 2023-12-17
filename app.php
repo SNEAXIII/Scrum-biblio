@@ -13,6 +13,8 @@ use App\Form\MediaForm;
 use App\Services\GeneratorNumeroAdherent;
 use App\Services\StatusMedia;
 use App\UserStories\CreerAdherent\CreerAdherent;
+use App\UserStories\RendreUnMediaDisponible\RendreUnMediaDisponible;
+use mysql_xdevapi\Exception;
 use Symfony\Component\Console\Helper\Table;
 use App\UserStories\CreerAdherent\CreerAdherentRequete;
 use App\UserStories\CreerLivre\CreerLivre;
@@ -175,7 +177,7 @@ $app->command(
         $listerMedia = new ListerNouveauMedia($entityManager);
         $arrayNouveauMedia = $listerMedia->execute();
         if (empty($arrayNouveauMedia)){
-            $io->error("La base de donnée est vide");
+            $io->error("La base de donnée ne contient pas de nouveaux médias.");
             return;
         }
         // Affichage du tableau
@@ -193,6 +195,18 @@ $app->command(
                 $media->getTypeMedia()]);
         }
         $table->render();
+    }
+);
+$app->command(
+    'biblio:update:one [id]',
+    function ($id,Style $io) use ($entityManager) {
+        $rendreUnMediaDisponible = new RendreUnMediaDisponible($entityManager);
+        try {
+            $rendreUnMediaDisponible->execute($id);
+            $io->success("Le média a bien été mis à l'état disponible dans la base de donnée");
+        } catch (Exception $e) {
+            $io->error($e);
+        }
     }
 );
 
