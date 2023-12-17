@@ -4,6 +4,7 @@ namespace App\UserStories\ListerNouveauMedia;
 
 use App\Entity\Media;
 use App\Services\MediaNormalizeArray;
+use App\Services\NormaliseMedia;
 use App\Services\StatusMedia;
 use Doctrine\ORM\EntityManagerInterface;
 

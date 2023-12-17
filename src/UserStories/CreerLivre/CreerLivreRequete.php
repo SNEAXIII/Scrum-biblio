@@ -10,6 +10,7 @@ class CreerLivreRequete
     public ?string $titre;
 
     #[Assert\NotBlank(message: "L'ISBN doit être renseigné.")]
+    #[Assert\Isbn(message: "L'ISBN doit avoir un format valide.")]
     public ?string $isbn;
 
     #[Assert\NotBlank(message: "L'auteur doit être renseigné.")]

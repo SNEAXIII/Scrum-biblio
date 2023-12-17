@@ -22,7 +22,7 @@ class CreerLivreTest extends TestCase
         // Arrange
         $requete = new CreerLivreRequete(
             "La déchéance humaine",
-            "iiiiiiiii",
+            "987-2-9764-1092-0",
             "johndoe",
 
             50);
@@ -34,11 +34,11 @@ class CreerLivreTest extends TestCase
         $resultat = $creerLivre->execute($requete);
         // Assert
         $repository = $this->entityManager->getRepository(Livre::class);
-        $criteria = ["isbn" => "iiiiiiiii"];
+        $criteria = ["isbn" => "987-2-9764-1092-0"];
         /** @var Livre $livre */
         $livre = $repository->findOneBy($criteria);
         $this->assertNotNull($livre);
-        $this->assertEquals("iiiiiiiii", $livre->getIsbn());
+        $this->assertEquals("987-2-9764-1092-0", $livre->getIsbn());
         $this->assertEquals("La déchéance humaine", $livre->getTitre());
         $this->assertEquals("johndoe", $livre->getAuteur());
         $this->assertEquals(50, $livre->getNombrePages());
@@ -52,9 +52,8 @@ class CreerLivreTest extends TestCase
     {
         $requete = new CreerLivreRequete(
             "",
-            "iiiiiiiii",
+            "987-2-9764-1092-0",
             "johndoe",
-
             50);
         $creerLivre = new CreerLivre(
             $this->entityManager,
@@ -71,14 +70,29 @@ class CreerLivreTest extends TestCase
             "La déchéance humaine",
             "",
             "johndoe",
-
             50
         );
         $creerLivre = new CreerLivre(
             $this->entityManager,
             $this->validator
         );
-        $this->expectExceptionMessage("ISBN");
+        $this->expectExceptionMessage("L'ISBN doit être renseigné.");
+        $creerLivre->execute($requete);
+    }
+    #[test]
+    public function creerLivre_ISBNMalRenseigne_Exception()
+    {
+        $requete = new CreerLivreRequete(
+            "La déchéance humaine",
+            "iiiiiii",
+            "johndoe",
+            50
+        );
+        $creerLivre = new CreerLivre(
+            $this->entityManager,
+            $this->validator
+        );
+        $this->expectExceptionMessage("L'ISBN doit avoir un format valide.");
         $creerLivre->execute($requete);
     }
 
@@ -87,9 +101,8 @@ class CreerLivreTest extends TestCase
     {
         $requete = new CreerLivreRequete(
             "La déchéance humaine",
-            "iiiiiiiii",
+            "987-2-9764-1092-0",
             "johndoe",
-
             50
         );
         $creerLivre = new CreerLivre(
@@ -106,9 +119,8 @@ class CreerLivreTest extends TestCase
     {
         $requete = new CreerLivreRequete(
             "La déchéance humaine",
-            "iiiiiiiii",
+            "987-2-9764-1092-0",
             "",
-
             50
         );
         $creerLivre = new CreerLivre(
@@ -124,7 +136,7 @@ class CreerLivreTest extends TestCase
     {
         $requete = new CreerLivreRequete(
             "La déchéance humaine",
-            "iiiiiiiii",
+            "987-2-9764-1092-0",
             "johndoe",
             null
         );
@@ -140,7 +152,7 @@ class CreerLivreTest extends TestCase
     {
         $requete = new CreerLivreRequete(
             "La déchéance humaine",
-            "iiiiiiiii",
+            "987-2-9764-1092-0",
             "johndoe",
             -10
         );

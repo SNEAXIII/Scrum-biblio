@@ -6,7 +6,6 @@ require_once "./vendor/autoload.php";
 /* @var $entityManager */
 require_once "./bootstrap.php";
 
-use App\Entity\Media;
 use App\Form\AdherentForm;
 use App\Form\LivreForm;
 use App\Form\MagazineForm;
@@ -14,6 +13,7 @@ use App\Form\MediaForm;
 use App\Services\GeneratorNumeroAdherent;
 use App\Services\StatusMedia;
 use App\UserStories\CreerAdherent\CreerAdherent;
+use Symfony\Component\Console\Helper\Table;
 use App\UserStories\CreerAdherent\CreerAdherentRequete;
 use App\UserStories\CreerLivre\CreerLivre;
 use App\UserStories\CreerLivre\CreerLivreRequete;
@@ -28,7 +28,7 @@ use Symfony\Component\Validator\ValidatorBuilder;
 //Definir les commandes
 $app = new Application();
 
-function printEnd(mixed $reussi, string $entity, Style $io)
+function printEnd(mixed $reussi, string $entity, Style $io): void
 {
     if ($reussi) {
         $io->success("L'entité $entity a bien été ajoutée à la base de donnée");
@@ -52,7 +52,7 @@ function getMediaForm(MediaForm $mediaForm, Style $io): MediaForm
     return $mediaForm;
 }
 
-function getAdherentForm(Style $io)
+function getAdherentForm(Style $io): AdherentForm
 {
     $adherentForm = new AdherentForm();
 
@@ -171,13 +171,29 @@ $app->command(
 );
 $app->command(
     'biblio:get:all',
-    function (Style $io)
-    use ($entityManager) {
+    function (Style $io) use ($entityManager) {
         $listerMedia = new ListerNouveauMedia($entityManager);
         $arrayNouveauMedia = $listerMedia->execute();
-//        todo continue here
-    },
-    ["biblio:get:All"]
+        if (empty($arrayNouveauMedia)){
+            $io->error("La base de donnée est vide");
+            return;
+        }
+        // Affichage du tableau
+        $table = new Table($io);
+        $table->setStyle('box-double');
+        $table->setHeaderTitle('Liste des nouveaux médias');
+        $table->setHeaders(['Id', 'Titre', 'Status', 'Date de creation','Type de média']);
+
+        foreach ($arrayNouveauMedia as $media) {
+            $table->addRow([
+                $media->getId(),
+                $media->getTitre(),
+                StatusMedia::getStatusName($media->getStatut()),
+                $media->getDateCreation()->format("d/m/Y"),
+                $media->getTypeMedia()]);
+        }
+        $table->render();
+    }
 );
 
 $app->run();

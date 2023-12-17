@@ -16,7 +16,6 @@ class Livre extends Media
     #[Column(length: 60)]
     private ?string $auteur;
 
-
     #[Column(type: 'integer', nullable: true)]
     private ?int $nombrePages;
 

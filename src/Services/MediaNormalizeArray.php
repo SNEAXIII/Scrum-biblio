@@ -4,12 +4,12 @@ namespace App\Services;
 
 class MediaNormalizeArray
 {
-    function execute(array $arrayMedia)
+    function execute(array $arrayMedia): array
     {
-        $normalizedMedia = [];
+        $arrayNormalizedMedia = [];
         foreach ($arrayMedia as $media) {
-            $normalizedMedia[] = new NormaliseMedia($media);
+            $arrayNormalizedMedia[] = new NormaliseMedia($media);
         }
-        return $normalizedMedia;
+        return $arrayNormalizedMedia;
     }
 }

@@ -13,10 +13,9 @@ $creerLivre = new CreerLivre(
 );
 
 $requete = new CreerLivreRequete(
-    "La déchéance humaine",
-    "iiiiiiiii",
+    "La déchéance humaine2",
+    "978-2070368228",
     "johndoe",
-    "05/07/1984",
     50
 );
 
