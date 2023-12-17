@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\OneToMany;
 
 
 #[Entity]
@@ -35,6 +37,9 @@ abstract class Media
 
     #[Column(length: 10)]
     protected ?DateTime $dateCreation;
+
+    #[OneToMany(mappedBy: 'media', targetEntity: Emprunt::class)]
+    private Collection $emprunts;
 
     public function __construct()
     {

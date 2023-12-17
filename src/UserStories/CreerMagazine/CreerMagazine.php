@@ -44,7 +44,6 @@ class CreerMagazine
         $magazine->setTitre($requete->getTitre());
         $magazine->setNumero($requete->getNumero());
         $magazine->setDatePublication($requete->getDatePublication());
-//        todo fix ca
         $magazine->setDateCreation(new \DateTime());
         $magazine->setStatus(StatusMedia::NOUVEAU);
         $magazine->setDureeEmprunt(DureeEmprunt::MAGAZINE);

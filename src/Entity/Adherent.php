@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
@@ -16,6 +20,8 @@ class Adherent
     #[Id]
     #[Column(type: 'integer')]
     #[GeneratedValue]
+    #[ManyToOne(targetEntity: Emprunt::class)]
+    #[JoinColumn(name: 'id')]
     private int $id;
 
     #[Column(length: 9)]
@@ -32,6 +38,9 @@ class Adherent
 
     #[Column(type: 'date')]
     private ?DateTime $dateAdhesion;
+
+    #[OneToMany(mappedBy: 'adherent', targetEntity: Emprunt::class)]
+    private Collection $emprunts;
 
     public function __construct()
     {
