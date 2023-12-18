@@ -176,7 +176,7 @@ $app -> command(
     ["biblio:add:magazine"]
 );
 $app -> command(
-    'biblio:get:all',
+    'biblio:get:allNew',
     function (Style $io) use ($entityManager) {
         $listerMedia = new ListerNouveauMedia($entityManager);
         $arrayNouveauMedia = $listerMedia -> execute();

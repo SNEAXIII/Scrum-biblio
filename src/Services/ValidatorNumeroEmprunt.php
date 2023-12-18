@@ -21,11 +21,11 @@ class ValidatorNumeroEmprunt
             throw new Exception("Le numéro d'emprunt doit faire 12 caractères");
         }
         // On teste si les 3 premiers cara sont "EM-"
-        if (preg_match($patternEM,$numeroEmprunt)) {
+        if (!preg_match($patternEM,$numeroEmprunt)) {
             throw new Exception("Le numéro d'emprunt doit commencer par \"EM-\"");
         }
         // On teste si les 9 derniers cara sont des chiffres
-        if (preg_match($patternNeufChiffres,$sousChaineNeufDernierCaractere)) {
+        if (!preg_match($patternNeufChiffres,$sousChaineNeufDernierCaractere)) {
             throw new Exception("Le numéro d'emprunt doit finir par 9 chiffres");
         }
 

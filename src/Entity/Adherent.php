@@ -46,59 +46,65 @@ class Adherent
     {
     }
 
+    public function isAdhesionValide(): bool
+    {
+        $dateButoir = (clone $this -> dateAdhesion)->modify("+1year");
+        return ($dateButoir > new DateTime());
+    }
+
     public function getId(): int
     {
-        return $this->id;
+        return $this -> id;
     }
 
     public function getNumeroAdherent(): string
     {
-        return $this->numeroAdherent;
+        return $this -> numeroAdherent;
     }
 
     public function setNumeroAdherent(string $numeroAdherent): void
     {
-        $this->numeroAdherent = $numeroAdherent;
+        $this -> numeroAdherent = $numeroAdherent;
     }
 
     public function getNom(): string
     {
-        return $this->nom;
+        return $this -> nom;
     }
 
     public function setNom(string $nom): void
     {
-        $this->nom = $nom;
+        $this -> nom = $nom;
     }
 
     public function getPrenom(): string
     {
-        return $this->prenom;
+        return $this -> prenom;
     }
 
     public function setPrenom(string $prenom): void
     {
-        $this->prenom = $prenom;
+        $this -> prenom = $prenom;
     }
 
     public function getEmail(): string
     {
-        return $this->email;
+        return $this -> email;
     }
 
     public function setEmail(string $email): void
     {
-        $this->email = $email;
+        $this -> email = $email;
     }
 
     public function getDateAdhesion(): ?DateTime
     {
-        return $this->dateAdhesion;
+        return $this -> dateAdhesion;
     }
 
     public function setDateAdhesion(?DateTime $dateAdhesion): void
     {
-        $this->dateAdhesion = $dateAdhesion;
+        $this -> dateAdhesion = $dateAdhesion;
     }
 
 }

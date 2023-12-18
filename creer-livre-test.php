@@ -1,8 +1,11 @@
 <?php
+/**@var EntityManagerInterface $entityManager*/
 require "bootstrap.php";
 
 use App\UserStories\CreerLivre\CreerLivre;
 use App\UserStories\CreerLivre\CreerLivreRequete;
+use App\UserStories\RendreUnMediaDisponible\RendreUnMediaDisponible;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
 
 $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
@@ -21,3 +24,7 @@ $requete = new CreerLivreRequete(
 );
 
 $creerLivre->execute($requete);
+
+$livreDispo = new RendreUnMediaDisponible($entityManager);
+
+$livreDispo -> execute(1);
