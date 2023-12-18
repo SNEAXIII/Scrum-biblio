@@ -6,16 +6,6 @@ use Exception;
 
 class ValidatorNumeroEmprunt
 {
-    private EntityManagerInterface $entityManager;
-
-    /**
-     * @param EntityManagerInterface $entityManager
-     */
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this -> entityManager = $entityManager;
-    }
-
     /**
      * @throws Exception
      */

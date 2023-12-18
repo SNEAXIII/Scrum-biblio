@@ -4,7 +4,7 @@ namespace App\Tests\Integration\UserStories;
 
 use App\Entity\Magazine;
 use App\Services\StatusMedia;
-use App\UserStories\CreerMagazine\{CreerMagazine, CreerMagazineRequete};
+use App\UserStories\EmprunterUnMedia\{CreerMagazine, CreerMagazineRequete};
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup, Tools\SchemaTool};
 use PHPUnit\Framework\{Attributes\Test, TestCase};

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Services;
+
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 
 class GeneratorNumeroEmprunt
@@ -15,9 +17,19 @@ class GeneratorNumeroEmprunt
         $this -> entityManager = $entityManager;
     }
 
-    public function execute(int $oldId): string
+    /**
+     * @throws Exception
+     */
+    public function execute(): string
     {
+
         // On génère le numéro suivant
+        $oldId = $this
+                -> entityManager
+                -> getConnection()
+                -> executeQuery("SELECT MAX(id) FROM emprunt")
+                -> fetchOne();
+
         $actualId = $oldId + 1;
 
         // On le formate pour qu'il corresponde au format "XXXXXXXXX".

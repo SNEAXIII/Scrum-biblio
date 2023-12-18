@@ -1,42 +1,35 @@
 <?php
 
-namespace App\UserStories\CreerMagazine;
+namespace App\UserStories\EmprunterUnMedia;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CreerEmpruntRequete
 {
-    #[Assert\NotBlank(message: "L'id de l'adherent doit être renseigné.")]
-    public int $idAdherent;
+    #[Assert\NotBlank(message: "Le numéro d'adherent doit être renseigné.")]
+    public string $numeroAdherent;
 
     #[Assert\NotBlank(message: "L'id du média doit être renseigné.")]
     public int $idMedia;
 
     /**
-     * @param int $idAdherent
+     * @param string $numeroAdherent
      * @param int $idMedia
      */
-    public function __construct(int $idAdherent, int $idMedia)
+    public function __construct(string $numeroAdherent, int $idMedia)
     {
-        $this -> idAdherent = $idAdherent;
+        $this -> numeroAdherent = $numeroAdherent;
         $this -> idMedia = $idMedia;
     }
 
-    /**
-     * @return int
-     */
-    public function getIdAdherent(): int
+    public function getNumeroAdherent(): string
     {
-        return $this -> idAdherent;
+        return $this -> numeroAdherent;
     }
 
-    /**
-     * @return int
-     */
     public function getIdMedia(): int
     {
         return $this -> idMedia;
     }
-
 
 }

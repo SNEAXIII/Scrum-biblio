@@ -7,7 +7,6 @@ use App\Entity\Emprunt;
 use App\Entity\Media;
 use App\Services\GeneratorNumeroEmprunt;
 use App\Services\ValidatorNumeroEmprunt;
-use App\UserStories\CreerMagazine\CreerEmpruntRequete;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -57,20 +56,22 @@ class EmprunterUnMedia
         $adherent = $this
             -> entityManager
             -> getRepository(Adherent::class)
-            -> findOneBy(["id" => $requete -> getIdAdherent()]);
-//        $numeroEmprunt = $this->generatorNumeroEmprunt->execute();
+            -> findOneBy(["numeroAdherent" => $requete -> getNumeroAdherent()]);
+        $numeroEmprunt = $this -> generatorNumeroEmprunt -> execute();
+        $intDureeEmprunt = $media -> getDureeEmprunt();
+        $dateActuelle = new DateTime();
+        $dateEstimee = (new DateTime())->modify("+$intDureeEmprunt days");
 
-// todo on peut suppr des enregistrement ???
         $emprunt = new Emprunt();
-//        $qb = $this -> entityManager -> getConnection() -> createQueryBuilder();
-//        $qb->insert($emprunt);
-//        $qb->las
-        $emprunt -> setDateEmprunt(new DateTime());
         $emprunt -> setDateRetourEffectif(null);
-        $emprunt -> setDateRetourEstime((new DateTime()) -> modify("+" . $media -> getDureeEmprunt()));
+        $emprunt -> setDateEmprunt($dateActuelle);
+        $emprunt -> setDateRetourEstime($dateEstimee);
         $emprunt -> setAdherent($adherent);
         $emprunt -> setMedia($media);
+        $emprunt -> setNumeroEmprunt($numeroEmprunt);
 
+        $this -> entityManager -> persist($emprunt);
+        $this -> entityManager -> flush();
         return true;
     }
 }

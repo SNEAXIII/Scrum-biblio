@@ -18,7 +18,7 @@ class Emprunt
     private DateTime $dateEmprunt;
     #[ORM\Column(type: 'date')]
     private DateTime $dateRetourEstime;
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'date',nullable: true)]
     private ?DateTime $dateRetourEffectif;
     #[ORM\ManyToOne(targetEntity: Adherent::class, inversedBy: 'emprunts')]
     #[ORM\JoinColumn(name: 'adherent_id', referencedColumnName: 'id')]
