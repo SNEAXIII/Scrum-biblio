@@ -1,0 +1,5 @@
+Rendre un media disponible:
+    l'emprunt doit exister dans la BDD
+    l'emprunt ne dois pas être déja retourné
+    le média doit être mis à l'état disponible
+    la date retour dois être mise à jour
