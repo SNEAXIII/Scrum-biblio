@@ -2,7 +2,6 @@
 
 namespace root;
 
-require_once "./vendor/autoload.php";
 /* @var $entityManager */
 require_once "./bootstrap.php";
 
@@ -13,6 +12,7 @@ use App\Form\MediaForm;
 use App\Services\GeneratorNumeroAdherent;
 use App\Services\GeneratorNumeroEmprunt;
 use App\Services\StatusMedia;
+use App\Services\ValidateRequest;
 use App\Services\ValidatorNumeroEmprunt;
 use App\UserStories\CreerAdherent\CreerAdherent;
 use App\UserStories\CreerAdherent\CreerAdherentRequete;
@@ -24,7 +24,9 @@ use App\UserStories\EmprunterUnMedia\CreerEmpruntRequete;
 use App\UserStories\EmprunterUnMedia\EmprunterUnMedia;
 use App\UserStories\ListerNouveauMedia\ListerNouveauMedia;
 use App\UserStories\RendreUnMediaDisponible\RendreUnMediaDisponible;
-use mysql_xdevapi\Exception;
+use App\UserStories\RetournerUnEmprunt\CreerRetourRequete;
+use App\UserStories\RetournerUnEmprunt\RetournerUnEmprunt;
+use Exception;
 use Silly\Application;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Style\SymfonyStyle as Style;
@@ -136,6 +138,7 @@ $app -> command(
     },
     ["biblio:add:livre"]
 );
+
 $app -> command(
     'biblio:add:Adherent',
     function (Style $io)
@@ -156,6 +159,7 @@ $app -> command(
     },
     ["biblio:add:adherent"]
 );
+
 $app -> command(
     'biblio:add:Magazine',
     function (Style $io)
@@ -175,6 +179,7 @@ $app -> command(
     },
     ["biblio:add:magazine"]
 );
+
 $app -> command(
     'biblio:get:allNew',
     function (Style $io) use ($entityManager) {
@@ -201,6 +206,7 @@ $app -> command(
         $table -> render();
     }
 );
+
 $app -> command(
     'biblio:update:one [id]',
     function ($id, Style $io) use ($entityManager) {
@@ -209,10 +215,11 @@ $app -> command(
             $rendreUnMediaDisponible -> execute($id);
             $io -> success("Le média a bien été mis à l'état disponible dans la base de donnée");
         } catch (Exception $e) {
-            $io -> error($e);
+            $io -> error($e->getMessage());
         }
     }
 );
+
 $app -> command(
     'biblio:add:emprunt',
     function (Style $io) use ($entityManager) {
@@ -235,7 +242,27 @@ $app -> command(
             $emprunterUnMedia -> execute($empruntRequete);
             $io -> success("L'emprunt a bien été effectué");
         } catch (Exception $e) {
-            $io -> error($e);
+            $io -> error($e->getMessage());
+        }
+    }
+);
+
+$app -> command(
+    'biblio:return:emprunt',
+    function (Style $io) use ($entityManager) {
+        try {
+            $numero_adherent = $io -> ask("Choisissez un numéro d'emprunt");
+            $retournerUnEmprunt = new RetournerUnEmprunt(
+                $entityManager,
+                new ValidateRequest()
+            );
+            $retournerUnEmpruntRequete = new CreerRetourRequete(
+                $numero_adherent,
+            );
+            $retournerUnEmprunt -> execute($retournerUnEmpruntRequete);
+            $io -> success("L'emprunt a bien été restitué");
+        } catch (Exception $e) {
+            $io -> error($e->getMessage());
         }
     }
 );

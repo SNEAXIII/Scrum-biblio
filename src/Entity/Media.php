@@ -32,8 +32,8 @@ abstract class Media
     #[Column(type: "integer")]
     protected ?int $dureeEmprunt;
 
-    #[Column(type: 'integer')]
-    protected ?int $status;
+    #[Column(type: 'string')]
+    protected ?string $status;
 
     #[Column(length: 10)]
     protected ?DateTime $dateCreation;
@@ -70,14 +70,14 @@ abstract class Media
         $this->dureeEmprunt = $dureeEmprunt;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): ?string
     {
-        return $this->status;
+        return $this -> status;
     }
 
-    public function setStatus(?int $status): void
+    public function setStatus(?string $status): void
     {
-        $this->status = $status;
+        $this -> status = $status;
     }
 
     public function getDateCreation(): ?DateTime
