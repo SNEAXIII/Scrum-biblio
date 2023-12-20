@@ -4,8 +4,6 @@ namespace App\Tests\Integration\UserStories;
 
 use App\Entity\Adherent;
 use App\Entity\Emprunt;
-use App\Entity\Livre;
-use App\Entity\Media;
 use App\Services\DureeEmprunt;
 use App\Services\GeneratorNumeroAdherent;
 use App\Services\GeneratorNumeroEmprunt;
@@ -20,8 +18,8 @@ use App\UserStories\CreerLivre\{CreerLivre, CreerLivreRequete};
 use DateTime;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup, Tools\SchemaTool};
-use PHPUnit\Framework\{Attributes\Test, TestCase};
 use Exception;
+use PHPUnit\Framework\{Attributes\Test, TestCase};
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
 
