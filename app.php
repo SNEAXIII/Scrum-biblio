@@ -254,7 +254,7 @@ $app -> command(
             $numero_adherent = $io -> ask("Choisissez un numéro d'emprunt");
             $retournerUnEmprunt = new RetournerUnEmprunt(
                 $entityManager,
-                new ValidateRequest()
+                getValidator()
             );
             $retournerUnEmpruntRequete = new CreerRetourRequete(
                 $numero_adherent,

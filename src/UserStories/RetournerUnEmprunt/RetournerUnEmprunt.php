@@ -7,28 +7,39 @@ use App\Services\{StatusMedia, ValidateRequest};
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RetournerUnEmprunt
 {
     private EntityManagerInterface $entityManager;
-    private ValidateRequest $validateRequest;
+    private ValidatorInterface $validator;
 
     /**
      * @param EntityManagerInterface $entityManager
-     * @param ValidateRequest $validateRequest
+     * @param ValidatorInterface $validator
      */
-    public function __construct(EntityManagerInterface $entityManager, ValidateRequest $validateRequest)
+    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator)
     {
         $this -> entityManager = $entityManager;
-        $this -> validateRequest = $validateRequest;
+        $this -> validator = $validator;
     }
+
 
     /**
      * @throws Exception
      */
     public function execute(CreerRetourRequete $requete): bool
     {
-        $this -> validateRequest -> execute($requete);
+
+        $errors = $this -> validator -> validate($requete);
+        if (count($errors) > 0) {
+            $messages = [];
+            foreach ($errors as $error) {
+                $messages[] = $error -> getMessage();
+            }
+
+            throw new Exception(implode("<br>", $messages));
+        }
 
         /** @var ?Emprunt $emprunt */
         $emprunt = $this
