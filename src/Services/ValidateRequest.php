@@ -19,7 +19,7 @@ class ValidateRequest
     /**
      * @throws Exception
      */
-    public function execute($request): true
+    public function execute($request): bool
     {
         $errors = $this -> validator -> validate($request);
         if (count($errors) > 0) {
