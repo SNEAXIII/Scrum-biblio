@@ -223,12 +223,9 @@ $app -> command(
 $app -> command(
     'biblio:add:emprunt',
     function (Style $io) use ($entityManager) {
-
-        $numero_adherent = $io -> ask("Choisissez un numéro d'adherent");
-
-        $id_media = intval($io -> ask("Choisissez un numéro de média"));
-
         try {
+            $numero_adherent = $io -> ask("Choisissez un numéro d'adherent");
+            $id_media = intval($io -> ask("Choisissez un numéro de média"));
             $emprunterUnMedia = new EmprunterUnMedia(
                 $entityManager,
                 getValidator(),

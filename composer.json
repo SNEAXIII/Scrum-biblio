@@ -34,6 +34,7 @@
   },
   "scripts": {
     "tests":"./vendor/bin/phpunit tests --color=always --testdox",
+    "testRetournerEmprunt":"./vendor/bin/phpunit tests/Integration/UserStories/RetournerUnEmpruntTest.php --color=always --testdox",
     "delDB": "./vendor/bin/doctrine orm:schema-tool:drop --force",
     "updateDB": "./vendor/bin/doctrine orm:schema-tool:update --force",
     "createDB": "./vendor/bin/doctrine orm:schema-tool:create",
