@@ -27,6 +27,7 @@ Des messages d’erreur explicites doivent être retournés en cas d’informati
 - Description : utilise une requete de la classe CreerRetourRequete
 ## Test d'intégrations
 
+[//]: # (todo finir)
 ## Exemple de code
 
 ```php
