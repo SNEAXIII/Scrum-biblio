@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 #[Entity]
 #[InheritanceType("JOINED")]
 #[DiscriminatorColumn(name: "type", type: "string")]
-#[DiscriminatorMap(["livre" => "Livre","magazine" => "Magazine"])]
+#[DiscriminatorMap(["livre" => "Livre","magazine" => "Magazine","bluray"=>"Bluray"])]
 abstract class Media
 {
     #[Id]

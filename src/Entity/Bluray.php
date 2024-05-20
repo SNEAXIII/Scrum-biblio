@@ -2,10 +2,17 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
+
+#[Entity]
 class Bluray extends Media
 {
+    #[ORM\Column(type: 'string', length: 60)]
     private ?string $realisateur;
+    #[ORM\Column(type: 'integer')]
     private ?int $duree;
+    #[ORM\Column(type: 'integer')]
     private ?int $anneeSortie;
 
     public function __construct()
