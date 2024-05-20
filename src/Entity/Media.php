@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\OneToMany;
 
 
 #[Entity]
@@ -30,11 +32,14 @@ abstract class Media
     #[Column(type: "integer")]
     protected ?int $dureeEmprunt;
 
-    #[Column(type: 'integer')]
-    protected ?int $status;
+    #[Column(type: 'string')]
+    protected ?string $status;
 
     #[Column(length: 10)]
     protected ?DateTime $dateCreation;
+
+    #[OneToMany(mappedBy: 'media', targetEntity: Emprunt::class)]
+    private Collection $emprunts;
 
     public function __construct()
     {
@@ -65,14 +70,14 @@ abstract class Media
         $this->dureeEmprunt = $dureeEmprunt;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): ?string
     {
-        return $this->status;
+        return $this -> status;
     }
 
-    public function setStatus(?int $status): void
+    public function setStatus(?string $status): void
     {
-        $this->status = $status;
+        $this -> status = $status;
     }
 
     public function getDateCreation(): ?DateTime

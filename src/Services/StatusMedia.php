@@ -6,10 +6,10 @@ use ReflectionClass;
 
 class StatusMedia
 {
-    public const NON_DISPONIBLE = 0;
-    public const NOUVEAU = 1;
-    public const DISPONIBLE = 2;
-    public const EMPRUNTE = 3;
+    public const NON_DISPONIBLE = "NON_DISPONIBLE";
+    public const NOUVEAU = "NOUVEAU";
+    public const DISPONIBLE = "DISPONIBLE";
+    public const EMPRUNTE = "EMPRUNTE";
 
     public static function getStatusName($value): ?string
     {
