@@ -1,5 +1,12 @@
 @startuml
 
+!theme carbon-gray
+skinparam ClassBorderColor black
+skinparam ClassBackgroundColor white
+skinparam BackgroundColor Linen
+skinparam ArrowHeadColor black
+skinparam Color black
+
 Class Livre {
 -string isbn
 -string auteur
