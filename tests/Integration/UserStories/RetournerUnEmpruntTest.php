@@ -223,7 +223,7 @@ class RetournerUnEmpruntTest extends TestCase
         ], $config);
         // Création des dépendences
         $this -> entityManager = new EntityManager($connection, $config);
-        $this -> validator = (new ValidatorBuilder()) -> enableAnnotationMapping() -> getValidator();
+        $this -> validator = (new ValidatorBuilder()) -> enableAttributeMapping() -> getValidator();
         // Création du schema de la base de données
         $schemaTool = new SchemaTool($this -> entityManager);
         $metadata = $this -> entityManager -> getMetadataFactory() -> getAllMetadata();

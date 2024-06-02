@@ -58,7 +58,7 @@ $schemaTool->createSchema($metadata);
 // Récupération des nouveaux médias
 $emprunterUnMedia = new EmprunterUnMedia(
       $entityManager,
-      new ValidatorBuilder()) -> enableAnnotationMapping() -> getValidator(),
+      new ValidatorBuilder()) -> enableAttributeMapping() -> getValidator(),
       new ValidatorNumeroEmprunt(),
       new GeneratorNumeroEmprunt($entityManager)
 );

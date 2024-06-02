@@ -76,7 +76,7 @@ $connection = DriverManager::getConnection(['driver' => 'pdo_sqlite','path' => '
 
 // Création des dépendences
 $entityManager = new EntityManager($connection, $config);
-$validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
+$validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
 
 // Création du schema de la base de données
 $schemaTool = new SchemaTool($entityManager);

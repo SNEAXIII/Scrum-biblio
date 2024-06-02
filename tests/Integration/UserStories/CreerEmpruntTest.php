@@ -223,7 +223,7 @@ class CreerEmpruntTest extends TestCase
 
         // Création des dépendences
         $this -> entityManager = new EntityManager($connection, $config);
-        $this -> validator = (new ValidatorBuilder()) -> enableAnnotationMapping() -> getValidator();
+        $this -> validator = (new ValidatorBuilder()) -> enableAttributeMapping() -> getValidator();
         $this -> validatorNumeroEmprunt = new ValidatorNumeroEmprunt();
         $this -> generatorNumeroEmprunt = new GeneratorNumeroEmprunt($this -> entityManager);
         // Création du schema de la base de données

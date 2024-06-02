@@ -21,7 +21,7 @@ $afficheFormulaire = true;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Déclaration des dépendances
     $generator = new GeneratorNumeroAdherent();
-    $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
+    $validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
     $creerAdherent = new CreerAdherent($entityManager,$generator,$validator);
     $requete = new CreerAdherentRequete($_POST["prenom"],$_POST["nom"],$_POST["email"]);
 

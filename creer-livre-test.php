@@ -8,7 +8,7 @@ use App\UserStories\RendreUnMediaDisponible\RendreUnMediaDisponible;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
 
-$validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
+$validator = (new ValidatorBuilder())->enableAttributeMapping()->getValidator();
 
 $creerLivre = new CreerLivre(
     $entityManager,

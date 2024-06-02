@@ -12,7 +12,7 @@ use Symfony\Component\Validator\ValidatorBuilder;
 
 $emprunterUnMedia = new EmprunterUnMedia(
     $entityManager,
-    (new ValidatorBuilder()) -> enableAnnotationMapping() -> getValidator(),
+    (new ValidatorBuilder()) -> enableAttributeMapping() -> getValidator(),
     new ValidatorNumeroEmprunt(),
     new GeneratorNumeroEmprunt($entityManager)
 );

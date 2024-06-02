@@ -47,7 +47,7 @@ function printEnd(mixed $reussi, string $entity, Style $io): void
 
 function getValidator(): ValidatorInterface
 {
-    return (new ValidatorBuilder()) -> enableAnnotationMapping() -> getValidator();
+    return (new ValidatorBuilder()) -> enableAttributeMapping() -> getValidator();
 }
 
 function getMediaForm(MediaForm $mediaForm, Style $io): MediaForm
