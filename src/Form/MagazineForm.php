@@ -37,6 +37,4 @@ class MagazineForm extends MediaForm
         $this -> datePublication = $datePublication;
     }
 
-
-
 }

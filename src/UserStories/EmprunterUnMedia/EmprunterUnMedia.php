@@ -26,7 +26,12 @@ class EmprunterUnMedia
      * @param ValidatorNumeroEmprunt $validatorNumeroEmprunt
      * @param GeneratorNumeroEmprunt $generatorNumeroEmprunt
      */
-    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator, ValidatorNumeroEmprunt $validatorNumeroEmprunt, GeneratorNumeroEmprunt $generatorNumeroEmprunt)
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ValidatorInterface     $validator,
+        ValidatorNumeroEmprunt $validatorNumeroEmprunt,
+        GeneratorNumeroEmprunt $generatorNumeroEmprunt
+    )
     {
         $this -> entityManager = $entityManager;
         $this -> validator = $validator;
@@ -63,21 +68,21 @@ class EmprunterUnMedia
         if (is_null($media)) {
             throw new Exception("Le média sélectionné n'existe pas dans la base de données");
         }
-        if ($media->getStatus()!==StatusMedia::DISPONIBLE) {
+        if ($media -> getStatus() !== StatusMedia::DISPONIBLE) {
             throw new Exception("Le média sélectionné n'est pas disponible");
         }
         if (is_null($adherent)) {
             throw new Exception("L'adhérent sélectionné n'existe pas dans la base de données");
         }
-        if (!$adherent->isAdhesionValide()) {
+        if (!$adherent -> isAdhesionValide()) {
             throw new Exception("L'adhésion n'est pas renouvelée");
         }
 
         $numeroEmprunt = $this -> generatorNumeroEmprunt -> execute();
-        $this->validatorNumeroEmprunt->validate($numeroEmprunt);
+        $this -> validatorNumeroEmprunt -> validate($numeroEmprunt);
         $intDureeEmprunt = $media -> getDureeEmprunt();
         $dateActuelle = new DateTime();
-        $dateEstimee = (new DateTime())->modify("+$intDureeEmprunt days");
+        $dateEstimee = (new DateTime()) -> modify("+$intDureeEmprunt days");
 
         $emprunt = new Emprunt();
         $emprunt -> setDateRetourEffectif(null);
@@ -88,7 +93,7 @@ class EmprunterUnMedia
         $emprunt -> setNumeroEmprunt($numeroEmprunt);
 
         $this -> entityManager -> persist($emprunt);
-        $media->setStatus(StatusMedia::EMPRUNTE);
+        $media -> setStatus(StatusMedia::EMPRUNTE);
         $this -> entityManager -> flush();
         return true;
     }

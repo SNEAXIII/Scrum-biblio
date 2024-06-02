@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
-#[Table(name: 'Adherent')]
+#[Table(name: 'adherent')]
 class Adherent
 {
     #[Id]

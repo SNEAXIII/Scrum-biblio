@@ -16,9 +16,10 @@ use Doctrine\ORM\Mapping\OneToMany;
 
 
 #[Entity]
+#[ORM\Table("media")]
 #[InheritanceType("JOINED")]
 #[DiscriminatorColumn(name: "type", type: "string")]
-#[DiscriminatorMap(["livre" => "Livre","magazine" => "Magazine","bluray"=>"Bluray"])]
+#[DiscriminatorMap(["livre" => "Livre", "magazine" => "Magazine", "bluray" => "Bluray"])]
 abstract class Media
 {
     #[Id]
@@ -47,27 +48,27 @@ abstract class Media
 
     public function getId(): int
     {
-        return $this->id;
+        return $this -> id;
     }
 
     public function getTitre(): ?string
     {
-        return $this->titre;
+        return $this -> titre;
     }
 
     public function setTitre(?string $titre): void
     {
-        $this->titre = $titre;
+        $this -> titre = $titre;
     }
 
     public function getDureeEmprunt(): ?int
     {
-        return $this->dureeEmprunt;
+        return $this -> dureeEmprunt;
     }
 
     public function setDureeEmprunt(?int $dureeEmprunt): void
     {
-        $this->dureeEmprunt = $dureeEmprunt;
+        $this -> dureeEmprunt = $dureeEmprunt;
     }
 
     public function getStatus(): ?string
@@ -82,14 +83,13 @@ abstract class Media
 
     public function getDateCreation(): ?DateTime
     {
-        return $this->dateCreation;
+        return $this -> dateCreation;
     }
 
     public function setDateCreation(?DateTime $dateCreation): void
     {
-        $this->dateCreation = $dateCreation;
+        $this -> dateCreation = $dateCreation;
     }
-
 
 
 }

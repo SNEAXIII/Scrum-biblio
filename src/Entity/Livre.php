@@ -6,8 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 
-
 #[Entity]
+#[ORM\Table("livre")]
 class Livre extends Media
 {
     #[Column(length: 25)]
@@ -64,7 +64,4 @@ class Livre extends Media
     {
         $this->nombrePages = $nombrePages;
     }
-
-
-
 }

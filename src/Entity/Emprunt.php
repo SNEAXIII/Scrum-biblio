@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\Table("emprunt")]
 class Emprunt
 {
     #[ORM\Id]
@@ -20,10 +21,10 @@ class Emprunt
     private DateTime $dateRetourEstime;
     #[ORM\Column(type: 'date',nullable: true)]
     private ?DateTime $dateRetourEffectif;
-    #[ORM\ManyToOne(targetEntity: Adherent::class, inversedBy: 'emprunts')]
+    #[ORM\ManyToOne(targetEntity: Adherent::class)]
     #[ORM\JoinColumn(name: 'adherent_id', referencedColumnName: 'id')]
     private Adherent $adherent;
-    #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'emprunts')]
+    #[ORM\ManyToOne(targetEntity: Media::class)]
     #[ORM\JoinColumn(name: 'media_id', referencedColumnName: 'id')]
     private Media $media;
 

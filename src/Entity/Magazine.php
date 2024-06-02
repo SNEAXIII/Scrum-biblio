@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
+#[Table("magazine")]
 class Magazine extends Media
 {
     #[Column(length: 20)]

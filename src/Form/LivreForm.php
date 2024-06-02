@@ -59,7 +59,4 @@ class LivreForm extends MediaForm
     {
         $this -> nombrePages = $nombrePages;
     }
-
-
-
 }
