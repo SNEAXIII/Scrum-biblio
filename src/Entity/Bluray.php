@@ -5,7 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 
-#[Entity]
+#[ORM\Entity]
+#[ORM\Table("bluray")]
 class Bluray extends Media
 {
     #[ORM\Column(type: 'string', length: 60)]

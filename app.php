@@ -5,7 +5,9 @@ namespace root;
 /* @var $entityManager */
 require_once "./bootstrap.php";
 
+use App\Entity\Bluray;
 use App\Form\AdherentForm;
+use App\Form\BlurayForm;
 use App\Form\LivreForm;
 use App\Form\MagazineForm;
 use App\Form\MediaForm;
@@ -16,6 +18,8 @@ use App\Services\ValidateRequest;
 use App\Services\ValidatorNumeroEmprunt;
 use App\UserStories\CreerAdherent\CreerAdherent;
 use App\UserStories\CreerAdherent\CreerAdherentRequete;
+use App\UserStories\CreerBluray\CreerBluray;
+use App\UserStories\CreerBluray\CreerBlurayRequete;
 use App\UserStories\CreerLivre\CreerLivre;
 use App\UserStories\CreerLivre\CreerLivreRequete;
 use App\UserStories\CreerMagazine\CreerMagazine;
@@ -118,6 +122,27 @@ function getMagazineForm(Style $io): MediaForm
     return $magazineForm;
 }
 
+function getBlurayForm(Style $io): MediaForm
+{
+    $blurayForm = new BlurayForm();
+
+    $io -> title("Outil de création d'un bluray dans la BDD");
+
+    $blurayForm = getMediaForm($blurayForm, $io);
+
+    $blurayForm -> setRealisateur(
+        $io -> ask("Veuillez saisir réalisateur ")
+    );
+    $blurayForm -> setDuree(
+        $io -> ask("Veuillez saisir une durée en minutes ")
+    );
+    $blurayForm -> setAnneeSortie(
+        $io -> ask("Veuillez saisir une année pour la sortie du bluray ")
+    );
+
+    return $blurayForm;
+}
+
 $app -> command(
     'biblio:add:Livre',
     function (Style $io)
@@ -181,6 +206,27 @@ $app -> command(
 );
 
 $app -> command(
+    'biblio:add:Bluray',
+    function (Style $io)
+    use ($entityManager) {
+        $blurayForm = getBlurayForm($io);
+        $requete = new CreerBlurayRequete(
+            $blurayForm -> getTitre(),
+            $blurayForm -> getRealisateur(),
+            $blurayForm -> getDuree(),
+            $blurayForm -> getAnneeSortie(),
+        );
+        $creerBluray = new CreerBluray(
+            $entityManager,
+            getValidator()
+        );
+        $reussi = $creerBluray -> execute($requete);
+        printEnd($reussi, "Bluray", $io);
+    },
+    ["biblio:add:bluray"]
+);
+
+$app -> command(
     'biblio:get:allNew',
     function (Style $io) use ($entityManager) {
         $listerMedia = new ListerNouveauMedia($entityManager);
@@ -201,7 +247,8 @@ $app -> command(
                 $media -> getTitre(),
                 StatusMedia ::getStatusName($media -> getStatut()),
                 $media -> getDateCreation() -> format("d/m/Y"),
-                $media -> getTypeMedia()]);
+                $media -> getTypeMedia()
+            ]);
         }
         $table -> render();
     }
@@ -215,7 +262,7 @@ $app -> command(
             $rendreUnMediaDisponible -> execute($id);
             $io -> success("Le média a bien été mis à l'état disponible dans la base de donnée");
         } catch (Exception $e) {
-            $io -> error($e->getMessage());
+            $io -> error($e -> getMessage());
         }
     }
 );
@@ -239,7 +286,7 @@ $app -> command(
             $emprunterUnMedia -> execute($empruntRequete);
             $io -> success("L'emprunt a bien été effectué");
         } catch (Exception $e) {
-            $io -> error($e->getMessage());
+            $io -> error($e -> getMessage());
         }
     }
 );
@@ -259,7 +306,7 @@ $app -> command(
             $retournerUnEmprunt -> execute($retournerUnEmpruntRequete);
             $io -> success("L'emprunt a bien été restitué");
         } catch (Exception $e) {
-            $io -> error($e->getMessage());
+            $io -> error($e -> getMessage());
         }
     }
 );
